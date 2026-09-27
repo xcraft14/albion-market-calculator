@@ -1,7 +1,7 @@
 <script lang="ts">
   import { untrack } from 'svelte'
   import { CITIES, type City } from '../../config'
-  import { calcRow, returnRate, type CalcSettings, type Market } from '../../calc/refining'
+  import { calcRow, fresh, returnRate, type CalcSettings, type Market } from '../../calc/refining'
   import { fetchPrices, fetchVolumes } from '../../data/aodp'
   import refiningJson from '../../gamedata/refining.json'
   import type { RefiningData, RefiningFamily } from '../../gamedata/types'
@@ -76,7 +76,20 @@
   const recipes = $derived(family.recipes.filter((r) => settings.enchants[r.enchant]))
   const rows = $derived(market ? recipes.map((r) => calcRow(r, data, market!, calcSettings)) : [])
 
-  const cityOptions = CITIES.map((city) => ({ value: city as City, label: city }))
+  // Buy-order data is patchy, so each city button shows how many tiers have a recent buy-order price there.
+  function cityOptions(kind: 'raw' | 'lower') {
+    const ingredients = recipes.map((r) => (kind === 'raw' ? r.raw : r.lower)).filter((i) => i !== null)
+    return CITIES.map((city) => {
+      const priced = market
+        ? ingredients.filter((i) => fresh(market!.prices.get(i.id)?.get(city)?.buyMax)).length
+        : null
+      return {
+        value: city as City,
+        label: priced === null ? city : `${city} ${priced}/${ingredients.length}`,
+        title: priced === null ? undefined : `Recent buy-order prices for ${priced} of ${ingredients.length} tiers`,
+      }
+    })
+  }
   // "Buy lower-tier metal bars in", "… cloth in"
   const lowerName = $derived(
     ['Planks', 'Cloth', 'Leather'].includes(family.name) ? family.name.toLowerCase() : `${family.name.toLowerCase()}s`,
@@ -177,11 +190,11 @@
 
   <div class="row">
     <span class="buy-label">Buy {family.rawName.toLowerCase()} in</span>
-    <Segmented options={cityOptions} bind:value={resourceCity.get, resourceCity.set} />
+    <Segmented options={cityOptions('raw')} bind:value={resourceCity.get, resourceCity.set} />
   </div>
   <div class="row">
     <span class="buy-label">Buy lower-tier {lowerName} in</span>
-    <Segmented options={cityOptions} bind:value={refinedCity.get, refinedCity.set} />
+    <Segmented options={cityOptions('lower')} bind:value={refinedCity.get, refinedCity.set} />
   </div>
 
   <details bind:open={settings.specsOpen}>

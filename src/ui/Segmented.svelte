@@ -9,7 +9,7 @@
 </script>
 
 <div class="segmented">
-  {#each options as option (option.label)}
+  {#each options as option, i (i)}
     <button
       type="button"
       class:active={option.value === value}

@@ -3,6 +3,7 @@
   import { route } from './app/router.svelte'
   import { settings, SETTINGS_KEY } from './app/settings.svelte'
   import { save } from './lib/storage'
+  import CraftingPage from './features/crafting/CraftingPage.svelte'
   import RefiningPage from './features/refining/RefiningPage.svelte'
 
   // Remember settings whenever any of them change.
@@ -20,7 +21,7 @@
     </a>
     <a href="#/crafting" class="tab" class:active={section === 'crafting'}>
       <img src="{ICON_BASE}/T4_MAIN_SWORD.png?size=40" alt="" width="20" height="20" />
-      Crafting <small>soon</small>
+      Crafting
     </a>
   </nav>
   <span class="server">EU server · prices from the Albion Online Data Project</span>
@@ -30,7 +31,7 @@
   {#if section === 'refining'}
     <RefiningPage familyKey={route.path[1]} />
   {:else}
-    <p class="soon">Crafting (weapons, armor, food) is coming soon.</p>
+    <CraftingPage itemKey={route.path[1]} />
   {/if}
 </main>
 
@@ -74,19 +75,9 @@
     color: var(--text);
   }
 
-  small {
-    font-size: 11px;
-    color: var(--text-muted);
-  }
-
   .server {
     margin-left: auto;
     font-size: 12px;
-    color: var(--text-muted);
-  }
-
-  .soon {
-    padding: 24px;
     color: var(--text-muted);
   }
 </style>

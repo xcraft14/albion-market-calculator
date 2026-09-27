@@ -87,11 +87,20 @@ interface PriceRow {
   buy_price_max_date: string
 }
 
-export function fetchPrices(ids: string[], cities: readonly string[], force = false): Promise<ByItemCity<Price>> {
-  const key = `prices|${ids.join(',')}|${cities.join(',')}`
+/** Current prices. Gear has 5 qualities (1 = normal); everything else only has quality 1. */
+export function fetchPrices(
+  ids: string[],
+  cities: readonly string[],
+  force = false,
+  quality = 1,
+): Promise<ByItemCity<Price>> {
+  const key = `prices|${ids.join(',')}|${cities.join(',')}|${quality}`
   return cached(key, PRICE_CACHE_MINUTES, force, async () => {
     const locations = encodeURIComponent(cities.join(','))
-    const urls = batchIds(ids, (joined) => `${AODP_BASE}/prices/${joined}.json?locations=${locations}&qualities=1`)
+    const urls = batchIds(
+      ids,
+      (joined) => `${AODP_BASE}/prices/${joined}.json?locations=${locations}&qualities=${quality}`,
+    )
     const rows = (await Promise.all(urls.map((u) => getJson<PriceRow[]>(u)))).flat()
 
     const table: ByItemCity<Price> = new Map()
@@ -113,8 +122,13 @@ interface HistoryRow {
 
 const utcDay = (d: Date) => d.toISOString().slice(0, 10)
 
-export function fetchVolumes(ids: string[], cities: readonly string[], force = false): Promise<ByItemCity<Volume>> {
-  const key = `history|${ids.join(',')}|${cities.join(',')}`
+export function fetchVolumes(
+  ids: string[],
+  cities: readonly string[],
+  force = false,
+  quality = 1,
+): Promise<ByItemCity<Volume>> {
+  const key = `history|${ids.join(',')}|${cities.join(',')}|${quality}`
   return cached(key, HISTORY_CACHE_MINUTES, force, async () => {
     const today = new Date()
     const dayOffset = (n: number) => utcDay(new Date(today.getTime() - n * 86_400_000))
@@ -125,7 +139,7 @@ export function fetchVolumes(ids: string[], cities: readonly string[], force = f
     const urls = batchIds(
       ids,
       (joined) =>
-        `${AODP_BASE}/history/${joined}.json?locations=${locations}&qualities=1&time-scale=24` +
+        `${AODP_BASE}/history/${joined}.json?locations=${locations}&qualities=${quality}&time-scale=24` +
         `&date=${dayOffset(8)}&end_date=${utcDay(today)}`,
     )
     const rows = (await Promise.all(urls.map((u) => getJson<HistoryRow[]>(u)))).flat()

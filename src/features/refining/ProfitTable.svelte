@@ -1,10 +1,13 @@
 <script lang="ts">
   import { CITY_COLORS, type City } from '../../config'
-  import { buyKey, type CityResult, type MaterialLine, type RowResult, type Sale } from '../../calc/refining'
+  import { buyKey } from '../../calc/market'
+  import type { CityResult, MaterialLine, RowResult, Sale } from '../../calc/refining'
   import type { RefiningFamily } from '../../gamedata/types'
   import { settings, type CellValue, type SellVia } from '../../app/settings.svelte'
   import { age, int, percent, signed, tierLabel, volume } from '../../lib/format'
+  import CityBadge from '../../ui/CityBadge.svelte'
   import ItemIcon from '../../ui/ItemIcon.svelte'
+  import { profitTint } from '../../ui/shading'
 
   interface Props {
     rows: RowResult[]
@@ -61,20 +64,8 @@
     return p === null ? '—' : signed(p)
   }
 
-  /**
-   * Green for profit, red for loss, stronger the bigger the margin. Uses profit % so low and high
-   * tiers are comparable: full green at +100%, full red at −50%.
-   */
-  function tint(sales: (Sale | null)[], focus: boolean): string {
-    const margins = sales
-      .map((s) => (focus ? s?.percentFocus : s?.percent))
-      .filter((p): p is number => p !== null && p !== undefined)
-    if (!margins.length) return ''
-    const margin = Math.max(...margins)
-    const strength = margin >= 0 ? Math.min(1, margin / 1) : Math.min(1, -margin / 0.5)
-    const alpha = (0.06 + 0.54 * strength ** 0.7).toFixed(2)
-    return margin >= 0 ? `background-color: rgb(34 197 94 / ${alpha})` : `background-color: rgb(239 68 68 / ${alpha})`
-  }
+  const tint = (sales: (Sale | null)[], focus: boolean) =>
+    profitTint(sales.map((s) => (focus ? s?.percentFocus : s?.percent)))
 
   // Manual prices are committed on change (Enter or leaving the field), so typing isn't interrupted.
   // Clearing a field, or typing the market price, goes back to the market price.
@@ -95,7 +86,9 @@
 
   function materialTitle(m: MaterialLine): string {
     const lines = [
-      `Buy in ${m.city} (change it in the "Buy … in" row above)`,
+      m.cheapest
+        ? `Buy in ${m.city}, the cheapest city for this tier (change it in the "Buy … in" row above)`
+        : `Buy in ${m.city} (change it in the "Buy … in" row above)`,
       `${m.count} per craft · buy ${int(m.perStack)} per stack (${int(m.perStackFocus)} with focus)`,
       m.market
         ? `Highest buy order ${int(m.market.price)} (seen ${age(m.market.ageHours)} ago)`
@@ -176,7 +169,9 @@
         <span
           class="city-tag"
           style="background: {CITY_COLORS[m.city].bg}; color: {CITY_COLORS[m.city].text}"
-          title="Buy-order city, set in the Buy … in row above">{m.city}</span
+          title={m.cheapest
+            ? 'Cheapest buy-order city for this tier ("Cheapest" in the Buy … in row above)'
+            : 'Buy-order city, set in the Buy … in row above'}>{m.city}</span
         >
       </div>
       <div class="small">
@@ -210,7 +205,7 @@
       </th>
       {#each cities as city (city)}
         <th colspan={showFocus ? 2 : 1} class="city">
-          {city}
+          <CityBadge {city} />
           {#if city === family.bonusCity}<span class="bonus" title="Refining bonus city">⚒</span>{/if}
         </th>
       {/each}

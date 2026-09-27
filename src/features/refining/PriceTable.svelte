@@ -1,8 +1,9 @@
 <script lang="ts">
   import { CITIES, type City } from '../../config'
-  import { fresh, type FreshQuote, type Market } from '../../calc/refining'
+  import { fresh, type FreshQuote, type Market } from '../../calc/market'
   import type { RefiningFamily, RefiningRecipe } from '../../gamedata/types'
   import { age, int, tierLabel, volume } from '../../lib/format'
+  import CityBadge from '../../ui/CityBadge.svelte'
   import ItemIcon from '../../ui/ItemIcon.svelte'
   import Legend from '../../ui/Legend.svelte'
 
@@ -47,7 +48,7 @@
       <th class="left">Item</th>
       {#each CITIES as city (city)}
         <th class="city">
-          {city}
+          <CityBadge {city} />
           {#if city === family.bonusCity}<span class="bonus" title="Refining bonus city">⚒</span>{/if}
         </th>
       {/each}

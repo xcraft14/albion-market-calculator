@@ -4,25 +4,17 @@ import {
   CITIES,
   FOCUS_BONUS,
   FOCUS_EFFICIENCY_PER_LEVEL,
-  IGNORE_AFTER_HOURS,
   SALES_TAX,
   SETUP_FEE,
-  STALE_AFTER_HOURS,
   USAGE_FEE_FACTOR,
   type City,
 } from '../config'
-import type { ByItemCity, Price, Quote, Volume } from '../data/aodp'
+import type { Volume } from '../data/aodp'
 import type { Ingredient, RefiningData, RefiningRecipe } from '../gamedata/types'
+import { buyQuote, cheapestCity, fresh, manualQuote, type FreshQuote, type ManualPrices, type Market } from './market'
 
-/** Prices typed in by the user, for when the market data is missing or wrong. */
-export interface ManualPrices {
-  /** Buy-order price (before the setup fee), keyed by `buyKey(itemId, city)`. */
-  buy: Record<string, number>
-  /** Sell price, keyed by item ID. Used in cities without a recent sell order. */
-  sell: Record<string, number>
-}
-
-export const buyKey = (itemId: string, city: string) => `${itemId}|${city}`
+/** A buy city, or the cheapest city for each tier. */
+export type BuyCityChoice = City | 'cheapest'
 
 export interface CalcSettings {
   /** Refined items per stack. */
@@ -33,37 +25,14 @@ export interface CalcSettings {
   /** Station fee in silver per 100 nutrition. */
   usageFee: number
   /** Buy-order city for the raw resource. */
-  resourceCity: City
+  resourceCity: BuyCityChoice
   /** Buy-order city for the lower-tier refined item. */
-  refinedCity: City
+  refinedCity: BuyCityChoice
+  /** Used for "cheapest" when no city has a price, so a price can still be typed in. */
+  fallbackCity: City
   /** Refining spec levels for T4..T8. */
   specs: number[]
   manual: ManualPrices
-}
-
-export interface Market {
-  prices: ByItemCity<Price>
-  volumes: ByItemCity<Volume>
-}
-
-/** A price that's recent enough to use, or one the user typed in. */
-export interface FreshQuote extends Quote {
-  ageHours: number
-  /** Older than STALE_AFTER_HOURS: shown, but flagged. */
-  stale: boolean
-  /** Typed in by the user. */
-  manual?: boolean
-}
-
-export function fresh(q: Quote | null | undefined, now = Date.now()): FreshQuote | null {
-  if (!q) return null
-  const ageHours = (now - q.date.getTime()) / 3_600_000
-  if (ageHours > IGNORE_AFTER_HOURS) return null
-  return { ...q, ageHours, stale: ageHours > STALE_AFTER_HOURS }
-}
-
-function manualQuote(price: number | undefined, now: number): FreshQuote | null {
-  return price && price > 0 ? { price, date: new Date(now), ageHours: 0, stale: false, manual: true } : null
 }
 
 export function returnRate(data: RefiningData, dailyBonus: number, focus: boolean): number {
@@ -107,7 +76,10 @@ export interface CityResult {
 
 export interface MaterialLine {
   id: string
+  /** Where the buy order is placed: the chosen city, or the cheapest one for this tier. */
   city: City
+  /** The city was picked as the cheapest. */
+  cheapest: boolean
   /** Amount per craft. */
   count: number
   /** Amount to buy for one stack, without and with focus. */
@@ -149,12 +121,14 @@ export function calcRow(
   const keep = 1 - returnRate(data, s.dailyBonus, false)
   const keepFocus = 1 - returnRate(data, s.dailyBonus, true)
 
-  const material = (ing: Ingredient, city: City): MaterialLine => {
-    const marketPrice = fresh(market.prices.get(ing.id)?.get(city)?.buyMax, now)
-    const price = manualQuote(s.manual.buy[buyKey(ing.id, city)], now) ?? marketPrice
+  const material = (ing: Ingredient, choice: BuyCityChoice): MaterialLine => {
+    const quoteIn = (c: City) => buyQuote(market, s.manual, ing.id, c, 'order', now)
+    const city = choice === 'cheapest' ? (cheapestCity(CITIES, quoteIn) ?? s.fallbackCity) : choice
+    const { market: marketPrice, price } = quoteIn(city)
     return {
       id: ing.id,
       city,
+      cheapest: choice === 'cheapest',
       count: ing.count,
       perStack: crafts * ing.count * keep,
       perStackFocus: crafts * ing.count * keepFocus,

@@ -6,7 +6,7 @@ export interface Ingredient {
   count: number
 }
 
-/** A generic crafting recipe. Refining and (later) crafting both use this shape. */
+/** A refining recipe. Crafting has its own shape (CraftRecipe), with alternatives and returns per ingredient. */
 export interface Recipe {
   /** Market item ID of the product, e.g. `T5_METALBAR_LEVEL1@1`. */
   id: string
@@ -44,4 +44,97 @@ export interface RefiningData {
   /** Extra production bonus in the family's specialization city (0.40). */
   specializationBonus: number
   families: RefiningFamily[]
+}
+
+/** What an ingredient is. Where it's bought from is saved per kind. */
+export type IngredientKind =
+  | 'metalbar'
+  | 'leather'
+  | 'cloth'
+  | 'planks'
+  | 'artifact'
+  | 'token'
+  | 'sigil'
+  | 'base'
+  | 'cape'
+  | 'crest'
+  | 'heart'
+  | 'energy'
+  | 'tome'
+  | 'part'
+
+export interface CraftIngredient {
+  /** Name without the tier word, e.g. "Remnants of the Old King", or the material ("Metal Bar"). */
+  name: string
+  kind: IngredientKind
+  itemValue: number
+}
+
+/** One ingredient of a recipe. It can have alternatives, e.g. an artifact or a token. */
+export interface CraftSlot {
+  /** Market item IDs; the first is the default, the rest are alternatives. */
+  options: string[]
+  count: number
+  /** Whether the return rate gives some back. Artifacts and other special ingredients: no. */
+  returned: boolean
+  /** The product keeps this ingredient's quality (the base item of royal items and faction capes). */
+  preserveQuality?: true
+}
+
+export interface CraftRecipe {
+  /** Market item ID of the product, e.g. `T4_2H_CLAYMORE_AVALON@1`. */
+  id: string
+  tier: number
+  enchant: number
+  /** Base focus cost per craft, before specs. */
+  focus: number
+  /** Sum of the ingredients' item values (default options), used for the usage fee. */
+  itemValue: number
+  /** Crafting fame of one craft, before Premium. This is what fills labourer journals. */
+  fame: number
+  slots: CraftSlot[]
+}
+
+export type JournalKind = 'WARRIOR' | 'HUNTER' | 'MAGE' | 'TOOLMAKER'
+
+export interface CraftItem {
+  /** Item ID without the tier, e.g. `2H_CLAYMORE_AVALON`. Used in page addresses. */
+  key: string
+  name: string
+  /** Crafting category for the city bonus, e.g. `sword`. Upgrade recipes use their base item's. */
+  category: string | null
+  /** City with the extra crafting bonus for the category. */
+  bonusCity: string | null
+  /** Labourer journal the item fills, if crafting it gives fame. */
+  journal: JournalKind | null
+  recipes: CraftRecipe[]
+}
+
+export interface TreeNode {
+  key: string
+  name: string
+  children?: TreeNode[]
+  /** Item keys. */
+  items?: string[]
+}
+
+export interface Journal {
+  kind: JournalKind
+  /** e.g. "Blacksmith's Journal" */
+  name: string
+  /** Fame a journal holds, per tier. */
+  maxFame: Record<number, number>
+}
+
+export interface CraftingData {
+  generatedAt: string
+  /** Base production bonus in every royal city and Brecilien (0.18). */
+  craftingBonus: number
+  /** Extra bonus per crafting category, and the city that gives it. */
+  categoryBonus: Record<string, { city: string; bonus: number }>
+  tree: TreeNode[]
+  items: CraftItem[]
+  /** Every ingredient used by the recipes, by market item ID. */
+  ingredients: Record<string, CraftIngredient>
+  journals: Journal[]
 }

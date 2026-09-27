@@ -36,6 +36,7 @@
     background: transparent;
     color: var(--text-muted);
     font: inherit;
+    white-space: nowrap;
     cursor: pointer;
   }
 

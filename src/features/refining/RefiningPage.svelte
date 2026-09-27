@@ -1,7 +1,8 @@
 <script lang="ts">
   import { untrack } from 'svelte'
   import { CITIES, type City } from '../../config'
-  import { calcRow, fresh, returnRate, type CalcSettings, type Market } from '../../calc/refining'
+  import { fresh, type Market } from '../../calc/market'
+  import { calcRow, returnRate, type BuyCityChoice, type CalcSettings } from '../../calc/refining'
   import { fetchPrices, fetchVolumes } from '../../data/aodp'
   import refiningJson from '../../gamedata/refining.json'
   import type { RefiningData, RefiningFamily } from '../../gamedata/types'
@@ -51,11 +52,11 @@
   // Per-family settings, falling back to the family's bonus city and zero specs.
   const resourceCity = {
     get: () => settings.resourceCity[family.key] ?? (family.bonusCity as City),
-    set: (city: City) => (settings.resourceCity[family.key] = city),
+    set: (city: BuyCityChoice) => (settings.resourceCity[family.key] = city),
   }
   const refinedCity = {
     get: () => settings.refinedCity[family.key] ?? (family.bonusCity as City),
-    set: (city: City) => (settings.refinedCity[family.key] = city),
+    set: (city: BuyCityChoice) => (settings.refinedCity[family.key] = city),
   }
   const specs = $derived(settings.specs[family.key] ?? [0, 0, 0, 0, 0])
   function setSpec(i: number, level: number) {
@@ -71,6 +72,7 @@
     usageFee: Math.max(0, settings.usageFee || 0),
     resourceCity: resourceCity.get(),
     refinedCity: refinedCity.get(),
+    fallbackCity: family.bonusCity as City,
     specs,
     manual: settings.manual,
   })
@@ -87,18 +89,24 @@
   const rows = $derived(market ? recipes.map((r) => calcRow(r, data, market!, calcSettings)) : [])
 
   // Buy-order data is patchy, so each city button shows how many tiers have a recent buy-order price there.
+  // "Cheapest" picks the city with the lowest buy order for each tier.
   function cityOptions(kind: 'raw' | 'lower') {
     const ingredients = recipes.map((r) => (kind === 'raw' ? r.raw : r.lower)).filter((i) => i !== null)
-    return CITIES.map((city) => {
-      const priced = market
-        ? ingredients.filter((i) => fresh(market!.prices.get(i.id)?.get(city)?.buyMax)).length
-        : null
-      return {
-        value: city as City,
-        label: priced === null ? city : `${city} ${priced}/${ingredients.length}`,
-        title: priced === null ? undefined : `Recent buy-order prices for ${priced} of ${ingredients.length} tiers`,
-      }
+    const pricedIn = (i: { id: string }, city: City) => !!fresh(market?.prices.get(i.id)?.get(city)?.buyMax)
+    const option = (value: BuyCityChoice, label: string, priced: number, where: string) => ({
+      value,
+      label: market ? `${label} ${priced}/${ingredients.length}` : label,
+      title: market ? `Recent buy-order prices for ${priced} of ${ingredients.length} tiers ${where}` : undefined,
     })
+    return [
+      ...CITIES.map((city) => option(city, city, ingredients.filter((i) => pricedIn(i, city)).length, `in ${city}`)),
+      option(
+        'cheapest',
+        'Cheapest',
+        ingredients.filter((i) => CITIES.some((city) => pricedIn(i, city))).length,
+        'in any city. Each tier is bought where its buy order is lowest.',
+      ),
+    ]
   }
   // "Buy lower-tier metal bars in", "… cloth in"
   const lowerName = $derived(

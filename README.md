@@ -1,7 +1,8 @@
 # Albion Market Calculator
 
-Refining (and later crafting) profit calculator for Albion Online, Europe server.
-Compares market prices and supply across all royal cities at a glance.
+Refining and crafting profit calculator for Albion Online, Europe server.
+Compares market prices and supply across all royal cities (and, for crafting, Brecilien and the Black Market)
+at a glance. Crafting covers weapons, armour (royal items included), capes and bags.
 
 **Live site:** https://xcraft14.github.io/albion-market-calculator/
 
@@ -18,7 +19,7 @@ npm run dev      # local dev server with live reload
 npm run check    # type-check
 npm test         # calculation unit tests
 npm run build    # production build into dist/
-npm run gamedata # re-download recipes, item values and focus costs after a game patch
+npm run gamedata # re-download recipes, item values, focus costs and journals after a game patch
 ```
 
 Every push to `main` is built and published to GitHub Pages by `.github/workflows/deploy.yml`.

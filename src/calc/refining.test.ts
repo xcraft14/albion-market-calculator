@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest'
 import type { ByItemCity, Price, Volume } from '../data/aodp'
 import refiningJson from '../gamedata/refining.json'
 import type { RefiningData } from '../gamedata/types'
-import { buyKey, calcRow, focusPerCraft, returnRate, type CalcSettings, type Market } from './refining'
+import { buyKey, type Market } from './market'
+import { calcRow, focusPerCraft, returnRate, type CalcSettings } from './refining'
 
 const data = refiningJson as RefiningData
 const bars = data.families.find((f) => f.key === 'metalbar')!
@@ -29,6 +30,7 @@ const settings: CalcSettings = {
   usageFee: 500,
   resourceCity: 'Thetford',
   refinedCity: 'Thetford',
+  fallbackCity: 'Thetford',
   specs: [0, 0, 0, 0, 0],
   manual: { buy: {}, sell: {} },
 }
@@ -131,6 +133,28 @@ describe('calcRow', () => {
     const r = calcRow(recipe('T5_METALBAR'), data, m, { ...settings, manual: { buy: {}, sell: { T5_METALBAR: 5 } } }, NOW)
     expect(r.cities.Martlock.order!.price.price).toBe(1100)
     expect(r.cities.Caerleon.order!.price.price).toBe(5)
+  })
+
+  it('buys each material in the cheapest city when asked', () => {
+    const spread = market([
+      ['T5_ORE', 'Thetford', { sellMin: null, buyMax: quote(300) }],
+      ['T5_ORE', 'Martlock', { sellMin: null, buyMax: quote(290) }],
+      ['T5_ORE', 'Caerleon', { sellMin: null, buyMax: quote(250, 30) }],
+      ['T4_METALBAR', 'Thetford', { sellMin: null, buyMax: quote(280) }],
+    ])
+    const manual = { buy: { [buyKey('T4_METALBAR', 'Lymhurst')]: 270 }, sell: {} }
+    const cheapest = { ...settings, resourceCity: 'cheapest', refinedCity: 'cheapest', manual } as const
+    const r = calcRow(recipe('T5_METALBAR'), data, spread, cheapest, NOW)
+    // Caerleon's price is too old to count.
+    expect(r.raw.city).toBe('Martlock')
+    expect(r.raw.cheapest).toBe(true)
+    // A typed-in price counts too.
+    expect(r.lower!.city).toBe('Lymhurst')
+    expect(r.lower!.price!.manual).toBe(true)
+    // No prices anywhere: fall back to the given city, so a price can be typed in there.
+    const none = calcRow(recipe('T6_METALBAR'), data, spread, cheapest, NOW)
+    expect(none.raw.city).toBe('Thetford')
+    expect(none.raw.price).toBeNull()
   })
 
   it('charges no usage fee and needs no lower-tier item for T2', () => {

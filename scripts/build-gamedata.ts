@@ -3,9 +3,11 @@
 
 import { writeFile } from 'node:fs/promises'
 import type { Ingredient, RefiningData, RefiningFamily, RefiningRecipe } from '../src/gamedata/types.ts'
+import { buildCrafting } from './crafting-data.ts'
 
 const DUMPS = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/master'
 const OUT = new URL('../src/gamedata/refining.json', import.meta.url)
+const CRAFTING_OUT = new URL('../src/gamedata/crafting.json', import.meta.url)
 
 const FAMILIES = [
   { key: 'metalbar', name: 'Metal Bar', rawName: 'Ore', raw: 'ORE', refined: 'METALBAR', category: 'ore' },
@@ -43,6 +45,18 @@ async function fetchClusterNames(): Promise<Map<string, string>> {
   return names
 }
 
+/** English item names: `  6201: T4_JOURNAL_WARRIOR   : Adept Blacksmith's Journal (Partially Full)` */
+async function fetchItemNames(): Promise<Map<string, string>> {
+  const res = await fetch(`${DUMPS}/formatted/items.txt`)
+  if (!res.ok) throw new Error(`items.txt: HTTP ${res.status}`)
+  const names = new Map<string, string>()
+  for (const line of (await res.text()).split('\n')) {
+    const m = line.match(/^\s*\d+:\s*(\S+)\s*:\s*(.+?)\s*$/)
+    if (m && !names.has(m[1])) names.set(m[1], m[2])
+  }
+  return names
+}
+
 function buildRecipe(item: Node, rawCode: string): RefiningRecipe {
   // Refined resources also have a faction-token recipe; use the plain one.
   const requirement = list(item.craftingrequirements).find(
@@ -71,10 +85,11 @@ function buildRecipe(item: Node, rawCode: string): RefiningRecipe {
 }
 
 async function main() {
-  const [items, modifiers, clusterNames] = await Promise.all([
+  const [items, modifiers, clusterNames, itemNames] = await Promise.all([
     fetchJson('items.json'),
     fetchJson('craftingmodifiers.json'),
     fetchClusterNames(),
+    fetchItemNames(),
   ])
 
   const byName = new Map<string, Node>(list(items.items.simpleitem).map((i) => [i['@uniquename'], i]))
@@ -126,6 +141,14 @@ async function main() {
     console.log(`${f.name.padEnd(12)} ${f.recipes.length} recipes, bonus city ${f.bonusCity}`)
   }
   console.log(`royal city bonus ${royalCityBonus}, specialization bonus ${specializationBonus}`)
+
+  const crafting = buildCrafting(items.items, modifiers, clusterNames, itemNames)
+  // Compact: the file is large and only loaded when the Crafting page opens.
+  await writeFile(CRAFTING_OUT, JSON.stringify(crafting) + '\n')
+  const recipes = crafting.items.reduce((n, i) => n + i.recipes.length, 0)
+  console.log(
+    `crafting: ${crafting.items.length} items, ${recipes} recipes, ${Object.keys(crafting.ingredients).length} ingredients`,
+  )
 }
 
 await main()

@@ -51,7 +51,8 @@
       <li>Profits are per stack of <strong>{int(stack)}</strong> refined items. Hover a cell for the full breakdown.</li>
       <li>
         <strong>Buy columns:</strong> buy-order price per unit including the {pct(SETUP_FEE)} fee. The coloured tag
-        is the city to place the buy order in (set in the "Buy … in" rows).
+        is the city to place the buy order in (set in the "Buy … in" rows; with "Cheapest" it's the cheapest city for
+        that tier).
       </li>
       <li><strong>Cost / item:</strong> materials after returns plus usage fee, per refined item.</li>
       <li>Small numbers under a price: items traded <strong>yesterday · 7-day average</strong> per day.</li>
@@ -68,8 +69,8 @@
     <h3>How profit is calculated</h3>
     <ul>
       <li>
-        <strong>Materials:</strong> highest current buy order in the chosen city (or your price) + {pct(SETUP_FEE)}
-        buy-order fee.
+        <strong>Materials:</strong> highest current buy order in the chosen city, or in the cheapest one (or your
+        price) + {pct(SETUP_FEE)} buy-order fee.
       </li>
       <li>
         <strong>Amount bought:</strong> only what a stack needs after the {pct(returnRate)} return rate ({pct(

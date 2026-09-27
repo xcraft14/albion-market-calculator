@@ -16,7 +16,9 @@ Requires Node.js 24 (LTS).
 npm install
 npm run dev      # local dev server with live reload
 npm run check    # type-check
+npm test         # calculation unit tests
 npm run build    # production build into dist/
+npm run gamedata # re-download recipes, item values and focus costs after a game patch
 ```
 
 Every push to `main` is built and published to GitHub Pages by `.github/workflows/deploy.yml`.

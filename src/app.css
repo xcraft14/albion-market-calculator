@@ -30,3 +30,39 @@ body {
 a {
   color: var(--accent);
 }
+
+input,
+select,
+button {
+  font: inherit;
+  color: var(--text);
+}
+
+input[type='number'],
+select {
+  padding: 3px 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+input[type='checkbox'] {
+  accent-color: var(--accent);
+}
+
+button {
+  padding: 4px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}

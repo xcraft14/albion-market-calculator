@@ -1,23 +1,37 @@
 <script lang="ts">
-  const ICON = 'https://render.albiononline.com/v1/item'
+  import { ICON_BASE } from './config'
+  import { route } from './app/router.svelte'
+  import { settings, SETTINGS_KEY } from './app/settings.svelte'
+  import { save } from './lib/storage'
+  import RefiningPage from './features/refining/RefiningPage.svelte'
+
+  // Remember settings whenever any of them change.
+  $effect(() => save(SETTINGS_KEY, $state.snapshot(settings)))
+
+  const section = $derived(route.path[0] === 'crafting' ? 'crafting' : 'refining')
 </script>
 
 <header>
   <h1>Albion Market Calculator</h1>
   <nav>
-    <span class="tab active">
-      <img src="{ICON}/T4_METALBAR.png?size=40" alt="" width="20" height="20" />
+    <a href="#/refining" class="tab" class:active={section === 'refining'}>
+      <img src="{ICON_BASE}/T4_METALBAR.png?size=40" alt="" width="20" height="20" />
       Refining
-    </span>
-    <span class="tab disabled" title="Coming soon">
-      <img src="{ICON}/T4_MAIN_SWORD.png?size=40" alt="" width="20" height="20" />
+    </a>
+    <a href="#/crafting" class="tab" class:active={section === 'crafting'}>
+      <img src="{ICON_BASE}/T4_MAIN_SWORD.png?size=40" alt="" width="20" height="20" />
       Crafting <small>soon</small>
-    </span>
+    </a>
   </nav>
+  <span class="server">EU server · prices from the Albion Online Data Project</span>
 </header>
 
 <main>
-  <p>Under construction. The refining calculator is being built.</p>
+  {#if section === 'refining'}
+    <RefiningPage familyKey={route.path[1]} />
+  {:else}
+    <p class="soon">Crafting (weapons, armor, food) is coming soon.</p>
+  {/if}
 </main>
 
 <style>
@@ -25,7 +39,7 @@
     display: flex;
     align-items: center;
     gap: 32px;
-    padding: 12px 24px;
+    padding: 10px 24px;
     background: var(--surface);
     border-bottom: 1px solid var(--border);
   }
@@ -47,18 +61,31 @@
     gap: 6px;
     padding: 6px 12px;
     border-radius: 6px;
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+
+  .tab:hover {
+    color: var(--text);
   }
 
   .tab.active {
     background: var(--surface-2);
+    color: var(--text);
   }
 
-  .tab.disabled {
+  small {
+    font-size: 11px;
     color: var(--text-muted);
-    opacity: 0.6;
   }
 
-  main {
+  .server {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .soon {
     padding: 24px;
     color: var(--text-muted);
   }

@@ -1,0 +1,3002 @@
+{
+ "generatedAt": "2026-09-27T10:33:30.302Z",
+ "royalCityBonus": 0.18,
+ "specializationBonus": 0.4,
+ "families": [
+  {
+   "key": "metalbar",
+   "name": "Metal Bar",
+   "rawName": "Ore",
+   "bonusCity": "Thetford",
+   "recipes": [
+    {
+     "id": "T2_METALBAR",
+     "tier": 2,
+     "enchant": 0,
+     "itemValue": 4,
+     "focus": 18,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T2_ORE",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T2_ORE",
+      "count": 1
+     },
+     "lower": null
+    },
+    {
+     "id": "T3_METALBAR",
+     "tier": 3,
+     "enchant": 0,
+     "itemValue": 8,
+     "focus": 31,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T3_ORE",
+       "count": 2
+      },
+      {
+       "id": "T2_METALBAR",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T3_ORE",
+      "count": 2
+     },
+     "lower": {
+      "id": "T2_METALBAR",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_METALBAR",
+     "tier": 4,
+     "enchant": 0,
+     "itemValue": 16,
+     "focus": 54,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_ORE",
+       "count": 2
+      },
+      {
+       "id": "T3_METALBAR",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_ORE",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_METALBAR",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_METALBAR_LEVEL1@1",
+     "tier": 4,
+     "enchant": 1,
+     "itemValue": 32,
+     "focus": 94,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_ORE_LEVEL1@1",
+       "count": 2
+      },
+      {
+       "id": "T3_METALBAR",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_ORE_LEVEL1@1",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_METALBAR",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_METALBAR_LEVEL2@2",
+     "tier": 4,
+     "enchant": 2,
+     "itemValue": 64,
+     "focus": 164,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_ORE_LEVEL2@2",
+       "count": 2
+      },
+      {
+       "id": "T3_METALBAR",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_ORE_LEVEL2@2",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_METALBAR",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_METALBAR_LEVEL3@3",
+     "tier": 4,
+     "enchant": 3,
+     "itemValue": 128,
+     "focus": 287,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_ORE_LEVEL3@3",
+       "count": 2
+      },
+      {
+       "id": "T3_METALBAR",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_ORE_LEVEL3@3",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_METALBAR",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_METALBAR_LEVEL4@4",
+     "tier": 4,
+     "enchant": 4,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_ORE_LEVEL4@4",
+       "count": 2
+      },
+      {
+       "id": "T3_METALBAR",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_ORE_LEVEL4@4",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_METALBAR",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_METALBAR",
+     "tier": 5,
+     "enchant": 0,
+     "itemValue": 32,
+     "focus": 94,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_ORE",
+       "count": 3
+      },
+      {
+       "id": "T4_METALBAR",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_ORE",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_METALBAR",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_METALBAR_LEVEL1@1",
+     "tier": 5,
+     "enchant": 1,
+     "itemValue": 64,
+     "focus": 164,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_ORE_LEVEL1@1",
+       "count": 3
+      },
+      {
+       "id": "T4_METALBAR_LEVEL1@1",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_ORE_LEVEL1@1",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_METALBAR_LEVEL1@1",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_METALBAR_LEVEL2@2",
+     "tier": 5,
+     "enchant": 2,
+     "itemValue": 128,
+     "focus": 287,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_ORE_LEVEL2@2",
+       "count": 3
+      },
+      {
+       "id": "T4_METALBAR_LEVEL2@2",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_ORE_LEVEL2@2",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_METALBAR_LEVEL2@2",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_METALBAR_LEVEL3@3",
+     "tier": 5,
+     "enchant": 3,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_ORE_LEVEL3@3",
+       "count": 3
+      },
+      {
+       "id": "T4_METALBAR_LEVEL3@3",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_ORE_LEVEL3@3",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_METALBAR_LEVEL3@3",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_METALBAR_LEVEL4@4",
+     "tier": 5,
+     "enchant": 4,
+     "itemValue": 512,
+     "focus": 880,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_ORE_LEVEL4@4",
+       "count": 3
+      },
+      {
+       "id": "T4_METALBAR_LEVEL4@4",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_ORE_LEVEL4@4",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_METALBAR_LEVEL4@4",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_METALBAR",
+     "tier": 6,
+     "enchant": 0,
+     "itemValue": 64,
+     "focus": 164,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_ORE",
+       "count": 4
+      },
+      {
+       "id": "T5_METALBAR",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_ORE",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_METALBAR",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_METALBAR_LEVEL1@1",
+     "tier": 6,
+     "enchant": 1,
+     "itemValue": 128,
+     "focus": 287,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_ORE_LEVEL1@1",
+       "count": 4
+      },
+      {
+       "id": "T5_METALBAR_LEVEL1@1",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_ORE_LEVEL1@1",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_METALBAR_LEVEL1@1",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_METALBAR_LEVEL2@2",
+     "tier": 6,
+     "enchant": 2,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_ORE_LEVEL2@2",
+       "count": 4
+      },
+      {
+       "id": "T5_METALBAR_LEVEL2@2",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_ORE_LEVEL2@2",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_METALBAR_LEVEL2@2",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_METALBAR_LEVEL3@3",
+     "tier": 6,
+     "enchant": 3,
+     "itemValue": 512,
+     "focus": 880,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_ORE_LEVEL3@3",
+       "count": 4
+      },
+      {
+       "id": "T5_METALBAR_LEVEL3@3",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_ORE_LEVEL3@3",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_METALBAR_LEVEL3@3",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_METALBAR_LEVEL4@4",
+     "tier": 6,
+     "enchant": 4,
+     "itemValue": 1024,
+     "focus": 1539,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_ORE_LEVEL4@4",
+       "count": 4
+      },
+      {
+       "id": "T5_METALBAR_LEVEL4@4",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_ORE_LEVEL4@4",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_METALBAR_LEVEL4@4",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_METALBAR",
+     "tier": 7,
+     "enchant": 0,
+     "itemValue": 128,
+     "focus": 287,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_ORE",
+       "count": 5
+      },
+      {
+       "id": "T6_METALBAR",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_ORE",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_METALBAR",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_METALBAR_LEVEL1@1",
+     "tier": 7,
+     "enchant": 1,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_ORE_LEVEL1@1",
+       "count": 5
+      },
+      {
+       "id": "T6_METALBAR_LEVEL1@1",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_ORE_LEVEL1@1",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_METALBAR_LEVEL1@1",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_METALBAR_LEVEL2@2",
+     "tier": 7,
+     "enchant": 2,
+     "itemValue": 512,
+     "focus": 880,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_ORE_LEVEL2@2",
+       "count": 5
+      },
+      {
+       "id": "T6_METALBAR_LEVEL2@2",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_ORE_LEVEL2@2",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_METALBAR_LEVEL2@2",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_METALBAR_LEVEL3@3",
+     "tier": 7,
+     "enchant": 3,
+     "itemValue": 1024,
+     "focus": 1539,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_ORE_LEVEL3@3",
+       "count": 5
+      },
+      {
+       "id": "T6_METALBAR_LEVEL3@3",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_ORE_LEVEL3@3",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_METALBAR_LEVEL3@3",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_METALBAR_LEVEL4@4",
+     "tier": 7,
+     "enchant": 4,
+     "itemValue": 2048,
+     "focus": 2694,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_ORE_LEVEL4@4",
+       "count": 5
+      },
+      {
+       "id": "T6_METALBAR_LEVEL4@4",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_ORE_LEVEL4@4",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_METALBAR_LEVEL4@4",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_METALBAR",
+     "tier": 8,
+     "enchant": 0,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_ORE",
+       "count": 5
+      },
+      {
+       "id": "T7_METALBAR",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_ORE",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_METALBAR",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_METALBAR_LEVEL1@1",
+     "tier": 8,
+     "enchant": 1,
+     "itemValue": 512,
+     "focus": 880,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_ORE_LEVEL1@1",
+       "count": 5
+      },
+      {
+       "id": "T7_METALBAR_LEVEL1@1",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_ORE_LEVEL1@1",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_METALBAR_LEVEL1@1",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_METALBAR_LEVEL2@2",
+     "tier": 8,
+     "enchant": 2,
+     "itemValue": 1024,
+     "focus": 1539,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_ORE_LEVEL2@2",
+       "count": 5
+      },
+      {
+       "id": "T7_METALBAR_LEVEL2@2",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_ORE_LEVEL2@2",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_METALBAR_LEVEL2@2",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_METALBAR_LEVEL3@3",
+     "tier": 8,
+     "enchant": 3,
+     "itemValue": 2048,
+     "focus": 2694,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_ORE_LEVEL3@3",
+       "count": 5
+      },
+      {
+       "id": "T7_METALBAR_LEVEL3@3",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_ORE_LEVEL3@3",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_METALBAR_LEVEL3@3",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_METALBAR_LEVEL4@4",
+     "tier": 8,
+     "enchant": 4,
+     "itemValue": 4096,
+     "focus": 4714,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_ORE_LEVEL4@4",
+       "count": 5
+      },
+      {
+       "id": "T7_METALBAR_LEVEL4@4",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_ORE_LEVEL4@4",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_METALBAR_LEVEL4@4",
+      "count": 1
+     }
+    }
+   ]
+  },
+  {
+   "key": "planks",
+   "name": "Planks",
+   "rawName": "Wood",
+   "bonusCity": "Fort Sterling",
+   "recipes": [
+    {
+     "id": "T2_PLANKS",
+     "tier": 2,
+     "enchant": 0,
+     "itemValue": 4,
+     "focus": 18,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T2_WOOD",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T2_WOOD",
+      "count": 1
+     },
+     "lower": null
+    },
+    {
+     "id": "T3_PLANKS",
+     "tier": 3,
+     "enchant": 0,
+     "itemValue": 8,
+     "focus": 31,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T3_WOOD",
+       "count": 2
+      },
+      {
+       "id": "T2_PLANKS",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T3_WOOD",
+      "count": 2
+     },
+     "lower": {
+      "id": "T2_PLANKS",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_PLANKS",
+     "tier": 4,
+     "enchant": 0,
+     "itemValue": 16,
+     "focus": 54,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_WOOD",
+       "count": 2
+      },
+      {
+       "id": "T3_PLANKS",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_WOOD",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_PLANKS",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_PLANKS_LEVEL1@1",
+     "tier": 4,
+     "enchant": 1,
+     "itemValue": 32,
+     "focus": 94,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_WOOD_LEVEL1@1",
+       "count": 2
+      },
+      {
+       "id": "T3_PLANKS",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_WOOD_LEVEL1@1",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_PLANKS",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_PLANKS_LEVEL2@2",
+     "tier": 4,
+     "enchant": 2,
+     "itemValue": 64,
+     "focus": 164,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_WOOD_LEVEL2@2",
+       "count": 2
+      },
+      {
+       "id": "T3_PLANKS",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_WOOD_LEVEL2@2",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_PLANKS",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_PLANKS_LEVEL3@3",
+     "tier": 4,
+     "enchant": 3,
+     "itemValue": 128,
+     "focus": 287,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_WOOD_LEVEL3@3",
+       "count": 2
+      },
+      {
+       "id": "T3_PLANKS",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_WOOD_LEVEL3@3",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_PLANKS",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_PLANKS_LEVEL4@4",
+     "tier": 4,
+     "enchant": 4,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_WOOD_LEVEL4@4",
+       "count": 2
+      },
+      {
+       "id": "T3_PLANKS",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_WOOD_LEVEL4@4",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_PLANKS",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_PLANKS",
+     "tier": 5,
+     "enchant": 0,
+     "itemValue": 32,
+     "focus": 94,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_WOOD",
+       "count": 3
+      },
+      {
+       "id": "T4_PLANKS",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_WOOD",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_PLANKS",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_PLANKS_LEVEL1@1",
+     "tier": 5,
+     "enchant": 1,
+     "itemValue": 64,
+     "focus": 164,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_WOOD_LEVEL1@1",
+       "count": 3
+      },
+      {
+       "id": "T4_PLANKS_LEVEL1@1",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_WOOD_LEVEL1@1",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_PLANKS_LEVEL1@1",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_PLANKS_LEVEL2@2",
+     "tier": 5,
+     "enchant": 2,
+     "itemValue": 128,
+     "focus": 287,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_WOOD_LEVEL2@2",
+       "count": 3
+      },
+      {
+       "id": "T4_PLANKS_LEVEL2@2",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_WOOD_LEVEL2@2",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_PLANKS_LEVEL2@2",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_PLANKS_LEVEL3@3",
+     "tier": 5,
+     "enchant": 3,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_WOOD_LEVEL3@3",
+       "count": 3
+      },
+      {
+       "id": "T4_PLANKS_LEVEL3@3",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_WOOD_LEVEL3@3",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_PLANKS_LEVEL3@3",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_PLANKS_LEVEL4@4",
+     "tier": 5,
+     "enchant": 4,
+     "itemValue": 512,
+     "focus": 880,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_WOOD_LEVEL4@4",
+       "count": 3
+      },
+      {
+       "id": "T4_PLANKS_LEVEL4@4",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_WOOD_LEVEL4@4",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_PLANKS_LEVEL4@4",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_PLANKS",
+     "tier": 6,
+     "enchant": 0,
+     "itemValue": 64,
+     "focus": 164,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_WOOD",
+       "count": 4
+      },
+      {
+       "id": "T5_PLANKS",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_WOOD",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_PLANKS",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_PLANKS_LEVEL1@1",
+     "tier": 6,
+     "enchant": 1,
+     "itemValue": 128,
+     "focus": 287,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_WOOD_LEVEL1@1",
+       "count": 4
+      },
+      {
+       "id": "T5_PLANKS_LEVEL1@1",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_WOOD_LEVEL1@1",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_PLANKS_LEVEL1@1",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_PLANKS_LEVEL2@2",
+     "tier": 6,
+     "enchant": 2,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_WOOD_LEVEL2@2",
+       "count": 4
+      },
+      {
+       "id": "T5_PLANKS_LEVEL2@2",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_WOOD_LEVEL2@2",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_PLANKS_LEVEL2@2",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_PLANKS_LEVEL3@3",
+     "tier": 6,
+     "enchant": 3,
+     "itemValue": 512,
+     "focus": 880,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_WOOD_LEVEL3@3",
+       "count": 4
+      },
+      {
+       "id": "T5_PLANKS_LEVEL3@3",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_WOOD_LEVEL3@3",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_PLANKS_LEVEL3@3",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_PLANKS_LEVEL4@4",
+     "tier": 6,
+     "enchant": 4,
+     "itemValue": 1024,
+     "focus": 1539,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_WOOD_LEVEL4@4",
+       "count": 4
+      },
+      {
+       "id": "T5_PLANKS_LEVEL4@4",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_WOOD_LEVEL4@4",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_PLANKS_LEVEL4@4",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_PLANKS",
+     "tier": 7,
+     "enchant": 0,
+     "itemValue": 128,
+     "focus": 287,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_WOOD",
+       "count": 5
+      },
+      {
+       "id": "T6_PLANKS",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_WOOD",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_PLANKS",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_PLANKS_LEVEL1@1",
+     "tier": 7,
+     "enchant": 1,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_WOOD_LEVEL1@1",
+       "count": 5
+      },
+      {
+       "id": "T6_PLANKS_LEVEL1@1",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_WOOD_LEVEL1@1",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_PLANKS_LEVEL1@1",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_PLANKS_LEVEL2@2",
+     "tier": 7,
+     "enchant": 2,
+     "itemValue": 512,
+     "focus": 880,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_WOOD_LEVEL2@2",
+       "count": 5
+      },
+      {
+       "id": "T6_PLANKS_LEVEL2@2",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_WOOD_LEVEL2@2",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_PLANKS_LEVEL2@2",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_PLANKS_LEVEL3@3",
+     "tier": 7,
+     "enchant": 3,
+     "itemValue": 1024,
+     "focus": 1539,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_WOOD_LEVEL3@3",
+       "count": 5
+      },
+      {
+       "id": "T6_PLANKS_LEVEL3@3",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_WOOD_LEVEL3@3",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_PLANKS_LEVEL3@3",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_PLANKS_LEVEL4@4",
+     "tier": 7,
+     "enchant": 4,
+     "itemValue": 2048,
+     "focus": 2694,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_WOOD_LEVEL4@4",
+       "count": 5
+      },
+      {
+       "id": "T6_PLANKS_LEVEL4@4",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_WOOD_LEVEL4@4",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_PLANKS_LEVEL4@4",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_PLANKS",
+     "tier": 8,
+     "enchant": 0,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_WOOD",
+       "count": 5
+      },
+      {
+       "id": "T7_PLANKS",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_WOOD",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_PLANKS",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_PLANKS_LEVEL1@1",
+     "tier": 8,
+     "enchant": 1,
+     "itemValue": 512,
+     "focus": 880,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_WOOD_LEVEL1@1",
+       "count": 5
+      },
+      {
+       "id": "T7_PLANKS_LEVEL1@1",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_WOOD_LEVEL1@1",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_PLANKS_LEVEL1@1",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_PLANKS_LEVEL2@2",
+     "tier": 8,
+     "enchant": 2,
+     "itemValue": 1024,
+     "focus": 1539,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_WOOD_LEVEL2@2",
+       "count": 5
+      },
+      {
+       "id": "T7_PLANKS_LEVEL2@2",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_WOOD_LEVEL2@2",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_PLANKS_LEVEL2@2",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_PLANKS_LEVEL3@3",
+     "tier": 8,
+     "enchant": 3,
+     "itemValue": 2048,
+     "focus": 2694,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_WOOD_LEVEL3@3",
+       "count": 5
+      },
+      {
+       "id": "T7_PLANKS_LEVEL3@3",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_WOOD_LEVEL3@3",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_PLANKS_LEVEL3@3",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_PLANKS_LEVEL4@4",
+     "tier": 8,
+     "enchant": 4,
+     "itemValue": 4096,
+     "focus": 4714,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_WOOD_LEVEL4@4",
+       "count": 5
+      },
+      {
+       "id": "T7_PLANKS_LEVEL4@4",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_WOOD_LEVEL4@4",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_PLANKS_LEVEL4@4",
+      "count": 1
+     }
+    }
+   ]
+  },
+  {
+   "key": "cloth",
+   "name": "Cloth",
+   "rawName": "Fiber",
+   "bonusCity": "Lymhurst",
+   "recipes": [
+    {
+     "id": "T2_CLOTH",
+     "tier": 2,
+     "enchant": 0,
+     "itemValue": 4,
+     "focus": 18,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T2_FIBER",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T2_FIBER",
+      "count": 1
+     },
+     "lower": null
+    },
+    {
+     "id": "T3_CLOTH",
+     "tier": 3,
+     "enchant": 0,
+     "itemValue": 8,
+     "focus": 31,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T3_FIBER",
+       "count": 2
+      },
+      {
+       "id": "T2_CLOTH",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T3_FIBER",
+      "count": 2
+     },
+     "lower": {
+      "id": "T2_CLOTH",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_CLOTH",
+     "tier": 4,
+     "enchant": 0,
+     "itemValue": 16,
+     "focus": 54,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_FIBER",
+       "count": 2
+      },
+      {
+       "id": "T3_CLOTH",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_FIBER",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_CLOTH",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_CLOTH_LEVEL1@1",
+     "tier": 4,
+     "enchant": 1,
+     "itemValue": 32,
+     "focus": 94,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_FIBER_LEVEL1@1",
+       "count": 2
+      },
+      {
+       "id": "T3_CLOTH",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_FIBER_LEVEL1@1",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_CLOTH",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_CLOTH_LEVEL2@2",
+     "tier": 4,
+     "enchant": 2,
+     "itemValue": 64,
+     "focus": 164,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_FIBER_LEVEL2@2",
+       "count": 2
+      },
+      {
+       "id": "T3_CLOTH",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_FIBER_LEVEL2@2",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_CLOTH",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_CLOTH_LEVEL3@3",
+     "tier": 4,
+     "enchant": 3,
+     "itemValue": 128,
+     "focus": 287,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_FIBER_LEVEL3@3",
+       "count": 2
+      },
+      {
+       "id": "T3_CLOTH",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_FIBER_LEVEL3@3",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_CLOTH",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_CLOTH_LEVEL4@4",
+     "tier": 4,
+     "enchant": 4,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_FIBER_LEVEL4@4",
+       "count": 2
+      },
+      {
+       "id": "T3_CLOTH",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_FIBER_LEVEL4@4",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_CLOTH",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_CLOTH",
+     "tier": 5,
+     "enchant": 0,
+     "itemValue": 32,
+     "focus": 94,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_FIBER",
+       "count": 3
+      },
+      {
+       "id": "T4_CLOTH",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_FIBER",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_CLOTH",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_CLOTH_LEVEL1@1",
+     "tier": 5,
+     "enchant": 1,
+     "itemValue": 64,
+     "focus": 164,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_FIBER_LEVEL1@1",
+       "count": 3
+      },
+      {
+       "id": "T4_CLOTH_LEVEL1@1",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_FIBER_LEVEL1@1",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_CLOTH_LEVEL1@1",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_CLOTH_LEVEL2@2",
+     "tier": 5,
+     "enchant": 2,
+     "itemValue": 128,
+     "focus": 287,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_FIBER_LEVEL2@2",
+       "count": 3
+      },
+      {
+       "id": "T4_CLOTH_LEVEL2@2",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_FIBER_LEVEL2@2",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_CLOTH_LEVEL2@2",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_CLOTH_LEVEL3@3",
+     "tier": 5,
+     "enchant": 3,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_FIBER_LEVEL3@3",
+       "count": 3
+      },
+      {
+       "id": "T4_CLOTH_LEVEL3@3",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_FIBER_LEVEL3@3",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_CLOTH_LEVEL3@3",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_CLOTH_LEVEL4@4",
+     "tier": 5,
+     "enchant": 4,
+     "itemValue": 512,
+     "focus": 880,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_FIBER_LEVEL4@4",
+       "count": 3
+      },
+      {
+       "id": "T4_CLOTH_LEVEL4@4",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_FIBER_LEVEL4@4",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_CLOTH_LEVEL4@4",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_CLOTH",
+     "tier": 6,
+     "enchant": 0,
+     "itemValue": 64,
+     "focus": 164,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_FIBER",
+       "count": 4
+      },
+      {
+       "id": "T5_CLOTH",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_FIBER",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_CLOTH",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_CLOTH_LEVEL1@1",
+     "tier": 6,
+     "enchant": 1,
+     "itemValue": 128,
+     "focus": 287,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_FIBER_LEVEL1@1",
+       "count": 4
+      },
+      {
+       "id": "T5_CLOTH_LEVEL1@1",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_FIBER_LEVEL1@1",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_CLOTH_LEVEL1@1",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_CLOTH_LEVEL2@2",
+     "tier": 6,
+     "enchant": 2,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_FIBER_LEVEL2@2",
+       "count": 4
+      },
+      {
+       "id": "T5_CLOTH_LEVEL2@2",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_FIBER_LEVEL2@2",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_CLOTH_LEVEL2@2",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_CLOTH_LEVEL3@3",
+     "tier": 6,
+     "enchant": 3,
+     "itemValue": 512,
+     "focus": 880,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_FIBER_LEVEL3@3",
+       "count": 4
+      },
+      {
+       "id": "T5_CLOTH_LEVEL3@3",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_FIBER_LEVEL3@3",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_CLOTH_LEVEL3@3",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_CLOTH_LEVEL4@4",
+     "tier": 6,
+     "enchant": 4,
+     "itemValue": 1024,
+     "focus": 1539,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_FIBER_LEVEL4@4",
+       "count": 4
+      },
+      {
+       "id": "T5_CLOTH_LEVEL4@4",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_FIBER_LEVEL4@4",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_CLOTH_LEVEL4@4",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_CLOTH",
+     "tier": 7,
+     "enchant": 0,
+     "itemValue": 128,
+     "focus": 287,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_FIBER",
+       "count": 5
+      },
+      {
+       "id": "T6_CLOTH",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_FIBER",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_CLOTH",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_CLOTH_LEVEL1@1",
+     "tier": 7,
+     "enchant": 1,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_FIBER_LEVEL1@1",
+       "count": 5
+      },
+      {
+       "id": "T6_CLOTH_LEVEL1@1",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_FIBER_LEVEL1@1",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_CLOTH_LEVEL1@1",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_CLOTH_LEVEL2@2",
+     "tier": 7,
+     "enchant": 2,
+     "itemValue": 512,
+     "focus": 880,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_FIBER_LEVEL2@2",
+       "count": 5
+      },
+      {
+       "id": "T6_CLOTH_LEVEL2@2",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_FIBER_LEVEL2@2",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_CLOTH_LEVEL2@2",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_CLOTH_LEVEL3@3",
+     "tier": 7,
+     "enchant": 3,
+     "itemValue": 1024,
+     "focus": 1539,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_FIBER_LEVEL3@3",
+       "count": 5
+      },
+      {
+       "id": "T6_CLOTH_LEVEL3@3",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_FIBER_LEVEL3@3",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_CLOTH_LEVEL3@3",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_CLOTH_LEVEL4@4",
+     "tier": 7,
+     "enchant": 4,
+     "itemValue": 2048,
+     "focus": 2694,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_FIBER_LEVEL4@4",
+       "count": 5
+      },
+      {
+       "id": "T6_CLOTH_LEVEL4@4",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_FIBER_LEVEL4@4",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_CLOTH_LEVEL4@4",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_CLOTH",
+     "tier": 8,
+     "enchant": 0,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_FIBER",
+       "count": 5
+      },
+      {
+       "id": "T7_CLOTH",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_FIBER",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_CLOTH",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_CLOTH_LEVEL1@1",
+     "tier": 8,
+     "enchant": 1,
+     "itemValue": 512,
+     "focus": 880,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_FIBER_LEVEL1@1",
+       "count": 5
+      },
+      {
+       "id": "T7_CLOTH_LEVEL1@1",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_FIBER_LEVEL1@1",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_CLOTH_LEVEL1@1",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_CLOTH_LEVEL2@2",
+     "tier": 8,
+     "enchant": 2,
+     "itemValue": 1024,
+     "focus": 1539,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_FIBER_LEVEL2@2",
+       "count": 5
+      },
+      {
+       "id": "T7_CLOTH_LEVEL2@2",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_FIBER_LEVEL2@2",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_CLOTH_LEVEL2@2",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_CLOTH_LEVEL3@3",
+     "tier": 8,
+     "enchant": 3,
+     "itemValue": 2048,
+     "focus": 2694,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_FIBER_LEVEL3@3",
+       "count": 5
+      },
+      {
+       "id": "T7_CLOTH_LEVEL3@3",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_FIBER_LEVEL3@3",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_CLOTH_LEVEL3@3",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_CLOTH_LEVEL4@4",
+     "tier": 8,
+     "enchant": 4,
+     "itemValue": 4096,
+     "focus": 4714,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_FIBER_LEVEL4@4",
+       "count": 5
+      },
+      {
+       "id": "T7_CLOTH_LEVEL4@4",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_FIBER_LEVEL4@4",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_CLOTH_LEVEL4@4",
+      "count": 1
+     }
+    }
+   ]
+  },
+  {
+   "key": "leather",
+   "name": "Leather",
+   "rawName": "Hide",
+   "bonusCity": "Martlock",
+   "recipes": [
+    {
+     "id": "T2_LEATHER",
+     "tier": 2,
+     "enchant": 0,
+     "itemValue": 4,
+     "focus": 18,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T2_HIDE",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T2_HIDE",
+      "count": 1
+     },
+     "lower": null
+    },
+    {
+     "id": "T3_LEATHER",
+     "tier": 3,
+     "enchant": 0,
+     "itemValue": 8,
+     "focus": 31,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T3_HIDE",
+       "count": 2
+      },
+      {
+       "id": "T2_LEATHER",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T3_HIDE",
+      "count": 2
+     },
+     "lower": {
+      "id": "T2_LEATHER",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_LEATHER",
+     "tier": 4,
+     "enchant": 0,
+     "itemValue": 16,
+     "focus": 54,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_HIDE",
+       "count": 2
+      },
+      {
+       "id": "T3_LEATHER",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_HIDE",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_LEATHER",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_LEATHER_LEVEL1@1",
+     "tier": 4,
+     "enchant": 1,
+     "itemValue": 32,
+     "focus": 94,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_HIDE_LEVEL1@1",
+       "count": 2
+      },
+      {
+       "id": "T3_LEATHER",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_HIDE_LEVEL1@1",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_LEATHER",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_LEATHER_LEVEL2@2",
+     "tier": 4,
+     "enchant": 2,
+     "itemValue": 64,
+     "focus": 164,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_HIDE_LEVEL2@2",
+       "count": 2
+      },
+      {
+       "id": "T3_LEATHER",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_HIDE_LEVEL2@2",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_LEATHER",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_LEATHER_LEVEL3@3",
+     "tier": 4,
+     "enchant": 3,
+     "itemValue": 128,
+     "focus": 287,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_HIDE_LEVEL3@3",
+       "count": 2
+      },
+      {
+       "id": "T3_LEATHER",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_HIDE_LEVEL3@3",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_LEATHER",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_LEATHER_LEVEL4@4",
+     "tier": 4,
+     "enchant": 4,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_HIDE_LEVEL4@4",
+       "count": 2
+      },
+      {
+       "id": "T3_LEATHER",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_HIDE_LEVEL4@4",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_LEATHER",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_LEATHER",
+     "tier": 5,
+     "enchant": 0,
+     "itemValue": 32,
+     "focus": 94,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_HIDE",
+       "count": 3
+      },
+      {
+       "id": "T4_LEATHER",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_HIDE",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_LEATHER",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_LEATHER_LEVEL1@1",
+     "tier": 5,
+     "enchant": 1,
+     "itemValue": 64,
+     "focus": 164,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_HIDE_LEVEL1@1",
+       "count": 3
+      },
+      {
+       "id": "T4_LEATHER_LEVEL1@1",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_HIDE_LEVEL1@1",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_LEATHER_LEVEL1@1",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_LEATHER_LEVEL2@2",
+     "tier": 5,
+     "enchant": 2,
+     "itemValue": 128,
+     "focus": 287,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_HIDE_LEVEL2@2",
+       "count": 3
+      },
+      {
+       "id": "T4_LEATHER_LEVEL2@2",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_HIDE_LEVEL2@2",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_LEATHER_LEVEL2@2",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_LEATHER_LEVEL3@3",
+     "tier": 5,
+     "enchant": 3,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_HIDE_LEVEL3@3",
+       "count": 3
+      },
+      {
+       "id": "T4_LEATHER_LEVEL3@3",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_HIDE_LEVEL3@3",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_LEATHER_LEVEL3@3",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_LEATHER_LEVEL4@4",
+     "tier": 5,
+     "enchant": 4,
+     "itemValue": 512,
+     "focus": 880,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_HIDE_LEVEL4@4",
+       "count": 3
+      },
+      {
+       "id": "T4_LEATHER_LEVEL4@4",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_HIDE_LEVEL4@4",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_LEATHER_LEVEL4@4",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_LEATHER",
+     "tier": 6,
+     "enchant": 0,
+     "itemValue": 64,
+     "focus": 164,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_HIDE",
+       "count": 4
+      },
+      {
+       "id": "T5_LEATHER",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_HIDE",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_LEATHER",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_LEATHER_LEVEL1@1",
+     "tier": 6,
+     "enchant": 1,
+     "itemValue": 128,
+     "focus": 287,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_HIDE_LEVEL1@1",
+       "count": 4
+      },
+      {
+       "id": "T5_LEATHER_LEVEL1@1",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_HIDE_LEVEL1@1",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_LEATHER_LEVEL1@1",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_LEATHER_LEVEL2@2",
+     "tier": 6,
+     "enchant": 2,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_HIDE_LEVEL2@2",
+       "count": 4
+      },
+      {
+       "id": "T5_LEATHER_LEVEL2@2",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_HIDE_LEVEL2@2",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_LEATHER_LEVEL2@2",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_LEATHER_LEVEL3@3",
+     "tier": 6,
+     "enchant": 3,
+     "itemValue": 512,
+     "focus": 880,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_HIDE_LEVEL3@3",
+       "count": 4
+      },
+      {
+       "id": "T5_LEATHER_LEVEL3@3",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_HIDE_LEVEL3@3",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_LEATHER_LEVEL3@3",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_LEATHER_LEVEL4@4",
+     "tier": 6,
+     "enchant": 4,
+     "itemValue": 1024,
+     "focus": 1539,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_HIDE_LEVEL4@4",
+       "count": 4
+      },
+      {
+       "id": "T5_LEATHER_LEVEL4@4",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_HIDE_LEVEL4@4",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_LEATHER_LEVEL4@4",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_LEATHER",
+     "tier": 7,
+     "enchant": 0,
+     "itemValue": 128,
+     "focus": 287,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_HIDE",
+       "count": 5
+      },
+      {
+       "id": "T6_LEATHER",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_HIDE",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_LEATHER",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_LEATHER_LEVEL1@1",
+     "tier": 7,
+     "enchant": 1,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_HIDE_LEVEL1@1",
+       "count": 5
+      },
+      {
+       "id": "T6_LEATHER_LEVEL1@1",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_HIDE_LEVEL1@1",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_LEATHER_LEVEL1@1",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_LEATHER_LEVEL2@2",
+     "tier": 7,
+     "enchant": 2,
+     "itemValue": 512,
+     "focus": 880,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_HIDE_LEVEL2@2",
+       "count": 5
+      },
+      {
+       "id": "T6_LEATHER_LEVEL2@2",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_HIDE_LEVEL2@2",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_LEATHER_LEVEL2@2",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_LEATHER_LEVEL3@3",
+     "tier": 7,
+     "enchant": 3,
+     "itemValue": 1024,
+     "focus": 1539,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_HIDE_LEVEL3@3",
+       "count": 5
+      },
+      {
+       "id": "T6_LEATHER_LEVEL3@3",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_HIDE_LEVEL3@3",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_LEATHER_LEVEL3@3",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_LEATHER_LEVEL4@4",
+     "tier": 7,
+     "enchant": 4,
+     "itemValue": 2048,
+     "focus": 2694,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_HIDE_LEVEL4@4",
+       "count": 5
+      },
+      {
+       "id": "T6_LEATHER_LEVEL4@4",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_HIDE_LEVEL4@4",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_LEATHER_LEVEL4@4",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_LEATHER",
+     "tier": 8,
+     "enchant": 0,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_HIDE",
+       "count": 5
+      },
+      {
+       "id": "T7_LEATHER",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_HIDE",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_LEATHER",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_LEATHER_LEVEL1@1",
+     "tier": 8,
+     "enchant": 1,
+     "itemValue": 512,
+     "focus": 880,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_HIDE_LEVEL1@1",
+       "count": 5
+      },
+      {
+       "id": "T7_LEATHER_LEVEL1@1",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_HIDE_LEVEL1@1",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_LEATHER_LEVEL1@1",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_LEATHER_LEVEL2@2",
+     "tier": 8,
+     "enchant": 2,
+     "itemValue": 1024,
+     "focus": 1539,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_HIDE_LEVEL2@2",
+       "count": 5
+      },
+      {
+       "id": "T7_LEATHER_LEVEL2@2",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_HIDE_LEVEL2@2",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_LEATHER_LEVEL2@2",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_LEATHER_LEVEL3@3",
+     "tier": 8,
+     "enchant": 3,
+     "itemValue": 2048,
+     "focus": 2694,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_HIDE_LEVEL3@3",
+       "count": 5
+      },
+      {
+       "id": "T7_LEATHER_LEVEL3@3",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_HIDE_LEVEL3@3",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_LEATHER_LEVEL3@3",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_LEATHER_LEVEL4@4",
+     "tier": 8,
+     "enchant": 4,
+     "itemValue": 4096,
+     "focus": 4714,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_HIDE_LEVEL4@4",
+       "count": 5
+      },
+      {
+       "id": "T7_LEATHER_LEVEL4@4",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_HIDE_LEVEL4@4",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_LEATHER_LEVEL4@4",
+      "count": 1
+     }
+    }
+   ]
+  },
+  {
+   "key": "stoneblock",
+   "name": "Stone Block",
+   "rawName": "Stone",
+   "bonusCity": "Bridgewatch",
+   "recipes": [
+    {
+     "id": "T2_STONEBLOCK",
+     "tier": 2,
+     "enchant": 0,
+     "itemValue": 4,
+     "focus": 18,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T2_ROCK",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T2_ROCK",
+      "count": 1
+     },
+     "lower": null
+    },
+    {
+     "id": "T3_STONEBLOCK",
+     "tier": 3,
+     "enchant": 0,
+     "itemValue": 8,
+     "focus": 31,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T3_ROCK",
+       "count": 2
+      },
+      {
+       "id": "T2_STONEBLOCK",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T3_ROCK",
+      "count": 2
+     },
+     "lower": {
+      "id": "T2_STONEBLOCK",
+      "count": 1
+     }
+    },
+    {
+     "id": "T4_STONEBLOCK",
+     "tier": 4,
+     "enchant": 0,
+     "itemValue": 16,
+     "focus": 54,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T4_ROCK",
+       "count": 2
+      },
+      {
+       "id": "T3_STONEBLOCK",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T4_ROCK",
+      "count": 2
+     },
+     "lower": {
+      "id": "T3_STONEBLOCK",
+      "count": 1
+     }
+    },
+    {
+     "id": "T5_STONEBLOCK",
+     "tier": 5,
+     "enchant": 0,
+     "itemValue": 32,
+     "focus": 94,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T5_ROCK",
+       "count": 3
+      },
+      {
+       "id": "T4_STONEBLOCK",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T5_ROCK",
+      "count": 3
+     },
+     "lower": {
+      "id": "T4_STONEBLOCK",
+      "count": 1
+     }
+    },
+    {
+     "id": "T6_STONEBLOCK",
+     "tier": 6,
+     "enchant": 0,
+     "itemValue": 64,
+     "focus": 164,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T6_ROCK",
+       "count": 4
+      },
+      {
+       "id": "T5_STONEBLOCK",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T6_ROCK",
+      "count": 4
+     },
+     "lower": {
+      "id": "T5_STONEBLOCK",
+      "count": 1
+     }
+    },
+    {
+     "id": "T7_STONEBLOCK",
+     "tier": 7,
+     "enchant": 0,
+     "itemValue": 128,
+     "focus": 287,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T7_ROCK",
+       "count": 5
+      },
+      {
+       "id": "T6_STONEBLOCK",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T7_ROCK",
+      "count": 5
+     },
+     "lower": {
+      "id": "T6_STONEBLOCK",
+      "count": 1
+     }
+    },
+    {
+     "id": "T8_STONEBLOCK",
+     "tier": 8,
+     "enchant": 0,
+     "itemValue": 256,
+     "focus": 503,
+     "amount": 1,
+     "ingredients": [
+      {
+       "id": "T8_ROCK",
+       "count": 5
+      },
+      {
+       "id": "T7_STONEBLOCK",
+       "count": 1
+      }
+     ],
+     "raw": {
+      "id": "T8_ROCK",
+      "count": 5
+     },
+     "lower": {
+      "id": "T7_STONEBLOCK",
+      "count": 1
+     }
+    }
+   ]
+  }
+ ]
+}

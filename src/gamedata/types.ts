@@ -138,3 +138,57 @@ export interface CraftingData {
   ingredients: Record<string, CraftIngredient>
   journals: Journal[]
 }
+
+/** The foundry's fragments, from the lowest power level to the highest. */
+export type FragmentKey = 'rune' | 'soul' | 'relic' | 'shard'
+/** The foundry's categories: red, blue, green and all three together. */
+export type FoundryCategoryKey = 'warrior' | 'mage' | 'hunter' | 'all'
+
+export interface FoundryFragment {
+  key: FragmentKey
+  /** e.g. "Rune", "Avalonian Shard" */
+  name: string
+  /** Market ID without the tier, e.g. `RUNE`, `SHARD_AVALONIAN`. */
+  code: string
+}
+
+export interface FoundryCategory {
+  key: FoundryCategoryKey
+  /** e.g. "Warrior" */
+  name: string
+  /** Colour in the game data: red, blue, green or all. */
+  aspect: string
+}
+
+/** A way to make a fragment at the foundry: 5 of the tier below, or the power level below + silver. */
+export interface FragmentConversion {
+  /** Market ID of the fragment used, e.g. `T5_RUNE`. */
+  from: string
+  count: number
+  silver: number
+}
+
+/** A meld: fragments in, one random artifact from the pool out. */
+export interface FoundryRecipe {
+  tier: number
+  fragment: FragmentKey
+  category: FoundryCategoryKey
+  /** Market ID of the fragment, e.g. `T6_RUNE`. */
+  fragmentId: string
+  /** Fragments per meld: 50, or 36 for All. */
+  count: number
+  /** Market IDs of the artifacts that can come out. Each has the same chance. */
+  pool: string[]
+}
+
+export interface FoundryData {
+  generatedAt: string
+  fragments: FoundryFragment[]
+  categories: FoundryCategory[]
+  /** T4–T8 × fragment × category. */
+  recipes: FoundryRecipe[]
+  /** Ways to make each fragment from cheaper ones, by market ID. T4 runes can only be bought. */
+  conversions: Record<string, FragmentConversion[]>
+  /** Artifact names without the tier word, by market ID without the tier (`ARTEFACT_2H_HAMMER_UNDEAD`). */
+  names: Record<string, string>
+}

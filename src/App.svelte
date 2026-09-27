@@ -4,12 +4,15 @@
   import { settings, SETTINGS_KEY } from './app/settings.svelte'
   import { save } from './lib/storage'
   import CraftingPage from './features/crafting/CraftingPage.svelte'
+  import FoundryPage from './features/foundry/FoundryPage.svelte'
   import RefiningPage from './features/refining/RefiningPage.svelte'
 
   // Remember settings whenever any of them change.
   $effect(() => save(SETTINGS_KEY, $state.snapshot(settings)))
 
-  const section = $derived(route.path[0] === 'crafting' ? 'crafting' : 'refining')
+  const section = $derived(
+    route.path[0] === 'crafting' ? 'crafting' : route.path[0] === 'foundry' ? 'foundry' : 'refining',
+  )
 </script>
 
 <header>
@@ -23,6 +26,10 @@
       <img src="{ICON_BASE}/T4_MAIN_SWORD.png?size=40" alt="" width="20" height="20" />
       Crafting
     </a>
+    <a href="#/foundry" class="tab" class:active={section === 'foundry'}>
+      <img src="{ICON_BASE}/T6_RUNE.png?size=40" alt="" width="20" height="20" />
+      Artifact Foundry
+    </a>
   </nav>
   <span class="server">EU server · prices from the Albion Online Data Project</span>
 </header>
@@ -30,8 +37,10 @@
 <main>
   {#if section === 'refining'}
     <RefiningPage familyKey={route.path[1]} />
-  {:else}
+  {:else if section === 'crafting'}
     <CraftingPage itemKey={route.path[1]} />
+  {:else}
+    <FoundryPage path={route.path.slice(1)} />
   {/if}
 </main>
 

@@ -1,10 +1,11 @@
 // User settings, shared by all pages and remembered in the browser.
 
 import type { FocusEntry, Source } from '../calc/crafting'
+import type { FragmentSource } from '../calc/foundry'
 import type { ManualPrices } from '../calc/market'
 import type { BuyCityChoice } from '../calc/refining'
 import type { City, CraftCity, Place } from '../config'
-import type { IngredientKind } from '../gamedata/types'
+import type { FoundryCategoryKey, FragmentKey, IngredientKind } from '../gamedata/types'
 import { load } from '../lib/storage'
 
 export type SellVia = 'order' | 'instant' | 'both'
@@ -41,6 +42,21 @@ export interface CraftingSettings {
   journalCity: CraftCity | null
 }
 
+export interface FoundrySettings {
+  /** Last meld shown, for when the page is opened without one. */
+  tier: number
+  fragment: FragmentKey
+  category: FoundryCategoryKey
+  /** Melds, for the totals. */
+  amount: number
+  /** How fragments are bought: buy order or instant buy, in a city or the cheapest one. */
+  source: FragmentSource
+  /** Make fragments from cheaper ones when that costs less than buying them. */
+  make: boolean
+  /** Cities artifacts aren't sold in. */
+  hiddenCities: CraftCity[]
+}
+
 export interface Settings {
   view: 'profit' | 'prices'
   /** Prices view: show the refined product or the raw resource. */
@@ -68,6 +84,7 @@ export interface Settings {
   /** Prices typed in by the user, for missing or wrong market data. Shared by all pages. */
   manual: ManualPrices
   crafting: CraftingSettings
+  foundry: FoundrySettings
 }
 
 export const SETTINGS_KEY = 'amc.settings.v1'
@@ -108,6 +125,15 @@ const defaults: Settings = {
     hiddenPlaces: [],
     openNodes: ['weapons'],
     journalCity: null,
+  },
+  foundry: {
+    tier: 6,
+    fragment: 'rune',
+    category: 'all',
+    amount: 1,
+    source: { via: 'order', city: 'cheapest' },
+    make: false,
+    hiddenCities: [],
   },
 }
 

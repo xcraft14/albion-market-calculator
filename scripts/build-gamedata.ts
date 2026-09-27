@@ -4,10 +4,12 @@
 import { writeFile } from 'node:fs/promises'
 import type { Ingredient, RefiningData, RefiningFamily, RefiningRecipe } from '../src/gamedata/types.ts'
 import { buildCrafting } from './crafting-data.ts'
+import { buildFoundry } from './foundry-data.ts'
 
 const DUMPS = 'https://raw.githubusercontent.com/ao-data/ao-bin-dumps/master'
 const OUT = new URL('../src/gamedata/refining.json', import.meta.url)
 const CRAFTING_OUT = new URL('../src/gamedata/crafting.json', import.meta.url)
+const FOUNDRY_OUT = new URL('../src/gamedata/foundry.json', import.meta.url)
 
 const FAMILIES = [
   { key: 'metalbar', name: 'Metal Bar', rawName: 'Ore', raw: 'ORE', refined: 'METALBAR', category: 'ore' },
@@ -85,9 +87,11 @@ function buildRecipe(item: Node, rawCode: string): RefiningRecipe {
 }
 
 async function main() {
-  const [items, modifiers, clusterNames, itemNames] = await Promise.all([
+  const [items, modifiers, buildings, loot, clusterNames, itemNames] = await Promise.all([
     fetchJson('items.json'),
     fetchJson('craftingmodifiers.json'),
+    fetchJson('buildings.json'),
+    fetchJson('loot.json'),
     fetchClusterNames(),
     fetchItemNames(),
   ])
@@ -149,6 +153,10 @@ async function main() {
   console.log(
     `crafting: ${crafting.items.length} items, ${recipes} recipes, ${Object.keys(crafting.ingredients).length} ingredients`,
   )
+
+  const foundry = buildFoundry(items.items, buildings, loot, itemNames)
+  await writeFile(FOUNDRY_OUT, JSON.stringify(foundry) + '\n')
+  console.log(`foundry: ${foundry.recipes.length} melds, ${Object.keys(foundry.names).length} artifacts`)
 }
 
 await main()

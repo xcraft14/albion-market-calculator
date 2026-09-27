@@ -95,7 +95,8 @@
 
   function materialTitle(m: MaterialLine): string {
     const lines = [
-      `${m.count} per craft · buy ${int(m.perStack)} per stack (${int(m.perStackFocus)} with focus) in ${m.city}`,
+      `Buy in ${m.city} (change it in the "Buy … in" row above)`,
+      `${m.count} per craft · buy ${int(m.perStack)} per stack (${int(m.perStackFocus)} with focus)`,
       m.market
         ? `Highest buy order ${int(m.market.price)} (seen ${age(m.market.ageHours)} ago)`
         : `No recent buy order in ${m.city}`,
@@ -172,6 +173,7 @@
       </div>
       <div class="unit" class:stale={m.price?.stale}>
         {m.unitCost === null ? '—' : int(m.unitCost)} <span class="small">incl. fee</span>
+        <span class="city-tag" title="Buy-order city, set in the Buy … in row above">{m.city}</span>
       </div>
       <div class="small">
         {int(m.perStack)}/stack · {volume(m.volume?.yesterday ?? null)} · {volume(m.volume?.avg7 ?? null)}
@@ -415,6 +417,16 @@
   .unit {
     font-weight: 600;
     margin-top: 2px;
+  }
+
+  .city-tag {
+    margin-left: 4px;
+    padding: 0 5px;
+    border-radius: 3px;
+    background: var(--surface-2);
+    font-size: 0.78em;
+    font-weight: 500;
+    font-style: normal;
   }
 
   .small {

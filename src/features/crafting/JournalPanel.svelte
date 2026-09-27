@@ -108,7 +108,7 @@
   </table>
   <p class="muted">
     For .0 items. Each enchantment level doubles the fame: .1 fills 2×, .4 fills 16×; the row breakdown shows each
-    variant. Assumes journals fill with the base fame, without Premium's bonus. Full journals pay {Math.round(
+    variant. Journals fill with the base fame; Premium's bonus doesn't count. Full journals pay {Math.round(
       tax * 100,
     )}% tax + {Math.round(SETUP_FEE * 1000) / 10}% sell-order fee.
   </p>

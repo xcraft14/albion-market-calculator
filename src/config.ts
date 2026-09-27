@@ -4,6 +4,16 @@
 export const CITIES = ['Bridgewatch', 'Caerleon', 'Fort Sterling', 'Lymhurst', 'Martlock', 'Thetford'] as const
 export type City = (typeof CITIES)[number]
 
+/** City colour badges. Text colours keep at least 4.5:1 contrast on their background. */
+export const CITY_COLORS: Record<City, { bg: string; text: string }> = {
+  Bridgewatch: { bg: '#f0923a', text: '#1c1105' },
+  Caerleon: { bg: '#5f6672', text: '#ffffff' },
+  'Fort Sterling': { bg: '#d4d8de', text: '#15181d' },
+  Lymhurst: { bg: '#4fb35f', text: '#07170a' },
+  Martlock: { bg: '#7cc7f2', text: '#06151f' },
+  Thetford: { bg: '#8b5cc7', text: '#ffffff' },
+}
+
 export const AODP_BASE = 'https://europe.albion-online-data.com/api/v2/stats'
 export const ICON_BASE = 'https://render.albiononline.com/v1/item'
 

@@ -29,6 +29,8 @@ export interface Settings {
   /** Per family: refining spec levels for T4..T8. */
   specs: Record<string, number[]>
   specsOpen: boolean
+  /** Cities left out of the profit table (not considered for selling). */
+  hiddenCities: City[]
   /** Prices typed in by the user, for missing or wrong market data. */
   manual: ManualPrices
 }
@@ -51,6 +53,7 @@ const defaults: Settings = {
   refinedCity: {},
   specs: {},
   specsOpen: true,
+  hiddenCities: [],
   manual: { buy: {}, sell: {} },
 }
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { CITIES, type City } from '../../config'
+  import type { City } from '../../config'
   import { buyKey, type CityResult, type MaterialLine, type RowResult, type Sale } from '../../calc/refining'
   import type { RefiningFamily } from '../../gamedata/types'
   import { settings, type CellValue, type SellVia } from '../../app/settings.svelte'
@@ -9,6 +9,8 @@
   interface Props {
     rows: RowResult[]
     family: RefiningFamily
+    /** Sell cities to show, in column order. */
+    cities: City[]
     stack: number
     sellVia: SellVia
     cellValue: CellValue
@@ -16,7 +18,7 @@
     minVolume: number
   }
 
-  let { rows, family, stack, sellVia, cellValue, showFocus, minVolume }: Props = $props()
+  let { rows, family, cities, stack, sellVia, cellValue, showFocus, minVolume }: Props = $props()
 
   function salesOf(c: CityResult): (Sale | null)[] {
     if (sellVia === 'order') return [c.order]
@@ -35,7 +37,7 @@
   function bestCity(row: RowResult): City | null {
     let best: City | null = null
     let bestProfit = 0
-    for (const city of CITIES) {
+    for (const city of cities) {
       const c = row.cities[city]
       if (lowVolume(c) || !c.volume?.avg7) continue
       for (const sale of salesOf(c)) {
@@ -200,7 +202,7 @@
         Your sell price
         <div class="sub">for cities without one</div>
       </th>
-      {#each CITIES as city (city)}
+      {#each cities as city (city)}
         <th colspan={showFocus ? 2 : 1} class="city">
           {city}
           {#if city === family.bonusCity}<span class="bonus" title="Refining bonus city">⚒</span>{/if}
@@ -212,7 +214,7 @@
       {/if}
     </tr>
     <tr>
-      {#each CITIES as city (city)}
+      {#each cities as city (city)}
         <th class="sub city-start">{showFocus ? 'normal' : 'profit'}</th>
         {#if showFocus}<th class="sub">focus</th>{/if}
       {/each}
@@ -257,7 +259,7 @@
             {/if}
           </div>
         </td>
-        {#each CITIES as city (city)}
+        {#each cities as city (city)}
           {@const c = row.cities[city]}
           {@const sales = salesOf(c)}
           <td
@@ -305,7 +307,7 @@
   Profits per stack of {int(stack)}; hover any cell for the full breakdown.
   <span class="swatch gain">green</span> profit and <span class="swatch loss">red</span> loss get stronger with the
   margin (full at +100% / −50%) ·
-  <span class="best-chip">gold frame</span> most profitable city, ignoring stale prices, cities with no trades in 7 days{minVolume >
+  <span class="best-chip">gold frame</span> most profitable of the shown cities, ignoring stale prices, cities with no trades in 7 days{minVolume >
   0
     ? ' and cities under your minimum volume'
     : ''} · ⚡ instant sell earns at least as much as a sell order ·

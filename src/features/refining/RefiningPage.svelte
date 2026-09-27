@@ -74,6 +74,12 @@
     manual: settings.manual,
   })
 
+  // Cities shown in the profit table. At least one always stays visible.
+  const sellCities = $derived(CITIES.filter((c) => !settings.hiddenCities.includes(c)))
+  function showCity(city: City, show: boolean) {
+    settings.hiddenCities = show ? settings.hiddenCities.filter((c) => c !== city) : [...settings.hiddenCities, city]
+  }
+
   const manualCount = $derived(Object.keys(settings.manual.buy).length + Object.keys(settings.manual.sell).length)
 
   const recipes = $derived(family.recipes.filter((r) => settings.enchants[r.enchant]))
@@ -208,6 +214,25 @@
     <span class="buy-label">Buy lower-tier {lowerName} in</span>
     <Segmented options={cityOptions('lower')} bind:value={refinedCity.get, refinedCity.set} />
   </div>
+  {#if settings.view === 'profit'}
+    <div class="row">
+      <span class="buy-label" title="Untick cities you won't sell in to hide them from the profit table">Sell in</span>
+      <span class="sell-cities">
+        {#each CITIES as city (city)}
+          {@const shown = sellCities.includes(city)}
+          <label class="chip" class:off={!shown}>
+            <input
+              type="checkbox"
+              checked={shown}
+              disabled={shown && sellCities.length === 1}
+              onchange={(e) => showCity(city, e.currentTarget.checked)}
+            />
+            {city}{#if city === family.bonusCity}<span class="bonus" title="Refining bonus city">⚒</span>{/if}
+          </label>
+        {/each}
+      </span>
+    </div>
+  {/if}
 
   <details bind:open={settings.specsOpen}>
     <summary>
@@ -243,6 +268,7 @@
       <ProfitTable
         {rows}
         {family}
+        cities={sellCities}
         stack={calcSettings.stack}
         sellVia={settings.sellVia}
         cellValue={settings.cellValue}
@@ -328,6 +354,26 @@
 
   .chip {
     gap: 2px;
+  }
+
+  .sell-cities {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .sell-cities .chip {
+    gap: 5px;
+  }
+
+  .chip.off {
+    color: var(--text-muted);
+    text-decoration: line-through;
+  }
+
+  .bonus {
+    margin-left: 3px;
+    color: var(--accent);
   }
 
   .w-num {

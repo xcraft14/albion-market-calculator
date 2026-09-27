@@ -9,6 +9,7 @@
   import ItemIcon from '../../ui/ItemIcon.svelte'
   import Segmented from '../../ui/Segmented.svelte'
   import PriceTable from './PriceTable.svelte'
+  import ProfitLegend from './ProfitLegend.svelte'
   import ProfitTable from './ProfitTable.svelte'
 
   const data = refiningJson as RefiningData
@@ -274,6 +275,16 @@
         cellValue={settings.cellValue}
         showFocus={settings.showFocus}
         minVolume={settings.minVolume || 0}
+      />
+      <ProfitLegend
+        stack={calcSettings.stack}
+        sellVia={settings.sellVia}
+        minVolume={settings.minVolume || 0}
+        premium={settings.premium}
+        usageFee={calcSettings.usageFee}
+        returnRate={returnRate(data, settings.dailyBonus, false)}
+        returnRateFocus={returnRate(data, settings.dailyBonus, true)}
+        showFocus={settings.showFocus}
       />
     {:else}
       <PriceTable {family} {recipes} {market} pricesOf={settings.pricesOf} />

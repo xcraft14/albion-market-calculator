@@ -4,6 +4,7 @@
   import type { RefiningFamily, RefiningRecipe } from '../../gamedata/types'
   import { age, int, tierLabel, volume } from '../../lib/format'
   import ItemIcon from '../../ui/ItemIcon.svelte'
+  import Legend from '../../ui/Legend.svelte'
 
   interface Props {
     family: RefiningFamily
@@ -85,13 +86,31 @@
   </tbody>
 </table>
 
-<p class="legend">
-  sell = lowest sell order · buy = highest buy order · small grey time = how old the price is ·
-  <span class="best-chip">best</span>
-  {pricesOf === 'refined' ? 'highest sell order (best place to sell)' : 'lowest buy order (cheapest to buy with buy orders)'},
-  ignoring prices older than 6h and cities with no trades in 7 days · <span class="stale">italic</span> older than 6h · — no price in the last 24h ·
-  bottom line: items traded yesterday · 7-day average
-</p>
+<Legend>
+  <section>
+    <h3>Reading the prices</h3>
+    <ul>
+      <li><strong>sell</strong> lowest sell order: what you list against, or pay to buy instantly.</li>
+      <li><strong>buy</strong> highest buy order: what you match with a buy order, or get when selling instantly.</li>
+      <li>The small time next to a price is how long ago it was seen.</li>
+      <li>Bottom line: items traded <strong>yesterday · 7-day average</strong> per day.</li>
+    </ul>
+  </section>
+  <section>
+    <h3>Colours and markers</h3>
+    <ul>
+      <li>
+        <span class="best-chip">green</span>
+        {pricesOf === 'refined'
+          ? 'highest sell order: the best place to sell'
+          : 'lowest buy order: the cheapest place to buy with buy orders'}. It ignores prices older than 6h and
+        cities with no trades in 7 days.
+      </li>
+      <li><span class="stale">italic</span> the price is older than 6 hours.</li>
+      <li><strong>—</strong> no price in the last 24 hours.</li>
+    </ul>
+  </section>
+</Legend>
 
 <style>
   table {
@@ -180,12 +199,6 @@
     background-color: color-mix(in srgb, var(--surface-2) 70%, transparent);
   }
 
-  .legend {
-    margin-top: 12px;
-    font-size: 12px;
-    color: var(--text-muted);
-    line-height: 1.7;
-  }
 
   .best-chip {
     padding: 1px 6px;

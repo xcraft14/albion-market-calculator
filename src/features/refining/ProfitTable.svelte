@@ -309,18 +309,6 @@
   </tbody>
 </table>
 
-<p class="legend">
-  Profits per stack of {int(stack)}; hover any cell for the full breakdown.
-  <span class="swatch gain">green</span> profit and <span class="swatch loss">red</span> loss get stronger with the
-  margin (full at +100% / −50%) ·
-  <span class="best-chip">gold frame</span> most profitable of the shown cities, ignoring stale prices, cities with no trades in 7 days{minVolume >
-  0
-    ? ' and cities under your minimum volume'
-    : ''} · ⚡ instant sell earns at least as much as a sell order ·
-  <span class="stale">italic</span> price older than 6h · <span class="manual-price">underlined</span> uses your
-  manual price · — no price in the last 24h · small numbers: items traded yesterday · 7-day average
-  {#if sellVia === 'both'}· top line sell order, bottom line instant sell{/if}
-</p>
 
 <style>
   table {
@@ -475,33 +463,5 @@
 
   tbody tr:hover td {
     background-color: color-mix(in srgb, var(--surface-2) 70%, transparent);
-  }
-
-  .legend {
-    margin-top: 12px;
-    font-size: 0.86em;
-    color: var(--text-muted);
-    line-height: 1.8;
-  }
-
-  .swatch {
-    padding: 1px 6px;
-    border-radius: 4px;
-    color: var(--text);
-  }
-
-  .swatch.gain {
-    background: rgb(34 197 94 / 0.5);
-  }
-
-  .swatch.loss {
-    background: rgb(239 68 68 / 0.5);
-  }
-
-  .best-chip {
-    padding: 1px 6px;
-    border-radius: 4px;
-    box-shadow: inset 0 0 0 2px var(--accent);
-    color: var(--text);
   }
 </style>

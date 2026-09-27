@@ -95,6 +95,7 @@
 
 <style>
   table {
+    width: 100%;
     border-collapse: collapse;
     font-variant-numeric: tabular-nums;
   }
@@ -109,6 +110,7 @@
   th {
     position: sticky;
     top: 0;
+    z-index: 1;
     background: var(--surface);
     font-weight: 600;
   }
@@ -136,7 +138,7 @@
 
   .line {
     display: grid;
-    grid-template-columns: 28px 64px 28px;
+    grid-template-columns: 2.2em 1fr 2.4em;
     align-items: baseline;
     border-radius: 3px;
   }

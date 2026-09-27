@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import type { ByItemCity, Price, Volume } from '../data/aodp'
 import refiningJson from '../gamedata/refining.json'
 import type { RefiningData } from '../gamedata/types'
-import { calcRow, focusPerCraft, returnRate, type CalcSettings, type Market } from './refining'
+import { buyKey, calcRow, focusPerCraft, returnRate, type CalcSettings, type Market } from './refining'
 
 const data = refiningJson as RefiningData
 const bars = data.families.find((f) => f.key === 'metalbar')!
@@ -30,6 +30,7 @@ const settings: CalcSettings = {
   resourceCity: 'Thetford',
   refinedCity: 'Thetford',
   specs: [0, 0, 0, 0, 0],
+  manual: { buy: {}, sell: {} },
 }
 
 describe('returnRate', () => {
@@ -72,6 +73,13 @@ describe('calcRow', () => {
     expect(row.usageFee).toBeCloseTo(17_982, 0)
   })
 
+  it('shows unit buy-order prices with the setup fee, and the cost per refined item', () => {
+    expect(row.raw.unitCost).toBeCloseTo(307.5)
+    expect(row.lower!.unitCost).toBeCloseTo(287)
+    // (materials 764 741 + usage fee 17 982) / 999
+    expect(row.costPerItem).toBeCloseTo(783.51, 2)
+  })
+
   it('calculates sell-order profit with and without focus', () => {
     const sale = row.cities.Martlock.order!
     expect(sale.revenue).toBeCloseTo(1_027_471.5, 1)
@@ -101,6 +109,28 @@ describe('calcRow', () => {
     expect(r.materialCost).toBeNull()
     expect(r.cities.Martlock.order!.profit).toBeNull()
     expect(r.cities.Martlock.order!.price.stale).toBe(true)
+  })
+
+  it('uses manual prices for missing materials and missing sell prices', () => {
+    const empty = market([['T4_METALBAR', 'Thetford', { sellMin: null, buyMax: quote(280) }]])
+    const manual = {
+      buy: { [buyKey('T5_ORE', 'Thetford')]: 300 },
+      sell: { T5_METALBAR: 1100 },
+    }
+    const r = calcRow(recipe('T5_METALBAR'), data, empty, { ...settings, manual }, NOW)
+    expect(r.raw.market).toBeNull()
+    expect(r.raw.price!.manual).toBe(true)
+    expect(r.materialCost).toBeCloseTo(764_741, 0)
+    // No market price anywhere, so every city uses the manual sell price for sell orders.
+    expect(r.cities.Caerleon.order!.price.manual).toBe(true)
+    expect(r.cities.Caerleon.order!.profit).toBeCloseTo(244_749, 0)
+    expect(r.cities.Caerleon.instant).toBeNull()
+  })
+
+  it('keeps market sell prices where they exist, even with a manual sell price', () => {
+    const r = calcRow(recipe('T5_METALBAR'), data, m, { ...settings, manual: { buy: {}, sell: { T5_METALBAR: 5 } } }, NOW)
+    expect(r.cities.Martlock.order!.price.price).toBe(1100)
+    expect(r.cities.Caerleon.order!.price.price).toBe(5)
   })
 
   it('charges no usage fee and needs no lower-tier item for T2', () => {

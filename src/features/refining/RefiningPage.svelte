@@ -71,7 +71,10 @@
     resourceCity: resourceCity.get(),
     refinedCity: refinedCity.get(),
     specs,
+    manual: settings.manual,
   })
+
+  const manualCount = $derived(Object.keys(settings.manual.buy).length + Object.keys(settings.manual.sell).length)
 
   const recipes = $derived(family.recipes.filter((r) => settings.enchants[r.enchant]))
   const rows = $derived(market ? recipes.map((r) => calcRow(r, data, market!, calcSettings)) : [])
@@ -153,6 +156,15 @@
     {/if}
 
     <span class="spacer"></span>
+    {#if manualCount}
+      <button
+        type="button"
+        title="Remove every price you typed in, on all pages"
+        onclick={() => (settings.manual = { buy: {}, sell: {} })}
+      >
+        Clear {manualCount} manual price{manualCount === 1 ? '' : 's'}
+      </button>
+    {/if}
     <span class="status">
       {#if loading}Loading prices…{:else if loadedAt}Prices loaded {loadedAt.toLocaleTimeString()}{/if}
     </span>
@@ -342,6 +354,5 @@
 
   .table-wrap {
     padding: 16px 24px 32px;
-    overflow-x: auto;
   }
 </style>

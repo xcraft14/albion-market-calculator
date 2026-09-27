@@ -1,5 +1,6 @@
 // User settings, shared by all pages and remembered in the browser.
 
+import type { ManualPrices } from '../calc/refining'
 import type { City } from '../config'
 import { load } from '../lib/storage'
 
@@ -28,6 +29,8 @@ export interface Settings {
   /** Per family: refining spec levels for T4..T8. */
   specs: Record<string, number[]>
   specsOpen: boolean
+  /** Prices typed in by the user, for missing or wrong market data. */
+  manual: ManualPrices
 }
 
 export const SETTINGS_KEY = 'amc.settings.v1'
@@ -48,6 +51,7 @@ const defaults: Settings = {
   refinedCity: {},
   specs: {},
   specsOpen: true,
+  manual: { buy: {}, sell: {} },
 }
 
 export const settings: Settings = $state({ ...defaults, ...load<Settings>(SETTINGS_KEY) })

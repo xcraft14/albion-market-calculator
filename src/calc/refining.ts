@@ -14,6 +14,16 @@ import {
 import type { ByItemCity, Price, Quote, Volume } from '../data/aodp'
 import type { Ingredient, RefiningData, RefiningRecipe } from '../gamedata/types'
 
+/** Prices typed in by the user, for when the market data is missing or wrong. */
+export interface ManualPrices {
+  /** Buy-order price (before the setup fee), keyed by `buyKey(itemId, city)`. */
+  buy: Record<string, number>
+  /** Sell price, keyed by item ID. Used in cities without a recent sell order. */
+  sell: Record<string, number>
+}
+
+export const buyKey = (itemId: string, city: string) => `${itemId}|${city}`
+
 export interface CalcSettings {
   /** Refined items per stack. */
   stack: number
@@ -28,6 +38,7 @@ export interface CalcSettings {
   refinedCity: City
   /** Refining spec levels for T4..T8. */
   specs: number[]
+  manual: ManualPrices
 }
 
 export interface Market {
@@ -35,11 +46,13 @@ export interface Market {
   volumes: ByItemCity<Volume>
 }
 
-/** A price that's recent enough to use. */
+/** A price that's recent enough to use, or one the user typed in. */
 export interface FreshQuote extends Quote {
   ageHours: number
   /** Older than STALE_AFTER_HOURS: shown, but flagged. */
   stale: boolean
+  /** Typed in by the user. */
+  manual?: boolean
 }
 
 export function fresh(q: Quote | null | undefined, now = Date.now()): FreshQuote | null {
@@ -47,6 +60,10 @@ export function fresh(q: Quote | null | undefined, now = Date.now()): FreshQuote
   const ageHours = (now - q.date.getTime()) / 3_600_000
   if (ageHours > IGNORE_AFTER_HOURS) return null
   return { ...q, ageHours, stale: ageHours > STALE_AFTER_HOURS }
+}
+
+function manualQuote(price: number | undefined, now: number): FreshQuote | null {
+  return price && price > 0 ? { price, date: new Date(now), ageHours: 0, stale: false, manual: true } : null
 }
 
 export function returnRate(data: RefiningData, dailyBonus: number, focus: boolean): number {
@@ -90,11 +107,18 @@ export interface CityResult {
 
 export interface MaterialLine {
   id: string
+  city: City
+  /** Amount per craft. */
+  count: number
   /** Amount to buy for one stack, without and with focus. */
   perStack: number
   perStackFocus: number
-  /** Buy-order price in the chosen city. */
+  /** Highest buy order in the chosen city, from the market data. */
+  market: FreshQuote | null
+  /** The price used: manual if typed in, otherwise the market price. */
   price: FreshQuote | null
+  /** Cost of one unit bought with a buy order, including the setup fee. */
+  unitCost: number | null
   volume: Volume | null
 }
 
@@ -106,6 +130,9 @@ export interface RowResult {
   materialCost: number | null
   materialCostFocus: number | null
   usageFee: number
+  /** Materials (after returns) plus usage fee, per refined item. */
+  costPerItem: number | null
+  costPerItemFocus: number | null
   focusPerStack: number
   silverPerFocus: number | null
   cities: Record<City, CityResult>
@@ -122,26 +149,33 @@ export function calcRow(
   const keep = 1 - returnRate(data, s.dailyBonus, false)
   const keepFocus = 1 - returnRate(data, s.dailyBonus, true)
 
-  const material = (ing: Ingredient, city: City): MaterialLine => ({
-    id: ing.id,
-    perStack: crafts * ing.count * keep,
-    perStackFocus: crafts * ing.count * keepFocus,
-    price: fresh(market.prices.get(ing.id)?.get(city)?.buyMax, now),
-    volume: market.volumes.get(ing.id)?.get(city) ?? null,
-  })
+  const material = (ing: Ingredient, city: City): MaterialLine => {
+    const marketPrice = fresh(market.prices.get(ing.id)?.get(city)?.buyMax, now)
+    const price = manualQuote(s.manual.buy[buyKey(ing.id, city)], now) ?? marketPrice
+    return {
+      id: ing.id,
+      city,
+      count: ing.count,
+      perStack: crafts * ing.count * keep,
+      perStackFocus: crafts * ing.count * keepFocus,
+      market: marketPrice,
+      price,
+      unitCost: price && price.price * (1 + SETUP_FEE),
+      volume: market.volumes.get(ing.id)?.get(city) ?? null,
+    }
+  }
   const raw = material(recipe.raw, s.resourceCity)
   const lower = recipe.lower && material(recipe.lower, s.refinedCity)
 
-  const havePrices = raw.price && (!lower || lower.price)
+  const havePrices = raw.unitCost !== null && (!lower || lower.unitCost !== null)
   const cost = (amount: (m: MaterialLine) => number) =>
-    havePrices
-      ? (amount(raw) * raw.price!.price + (lower ? amount(lower) * lower.price!.price : 0)) * (1 + SETUP_FEE)
-      : null
+    havePrices ? amount(raw) * raw.unitCost! + (lower ? amount(lower) * lower.unitCost! : 0) : null
   const materialCost = cost((m) => m.perStack)
   const materialCostFocus = cost((m) => m.perStackFocus)
 
   // T2 and lower have no usage fee.
   const usageFee = recipe.tier <= 2 ? 0 : (crafts * USAGE_FEE_FACTOR * recipe.itemValue * s.usageFee) / 100
+  const perItem = (materials: number | null) => (materials === null ? null : (materials + usageFee) / s.stack)
   const focusPerStack = crafts * focusPerCraft(recipe, s.specs)
   const silverPerFocus =
     materialCost !== null && materialCostFocus !== null && focusPerStack > 0
@@ -149,8 +183,7 @@ export function calcRow(
       : null
 
   const taxRate = s.premium ? SALES_TAX.premium : SALES_TAX.standard
-  const sale = (quote: Quote | null | undefined, isOrder: boolean): Sale | null => {
-    const price = fresh(quote, now)
+  const sale = (price: FreshQuote | null, isOrder: boolean): Sale | null => {
     if (!price) return null
     const gross = s.stack * price.price
     const tax = gross * taxRate
@@ -173,11 +206,13 @@ export function calcRow(
     }
   }
 
+  const manualSell = manualQuote(s.manual.sell[recipe.id], now)
   const cities = Object.fromEntries(
     CITIES.map((city) => {
       const p = market.prices.get(recipe.id)?.get(city)
-      const order = sale(p?.sellMin, true)
-      const instant = sale(p?.buyMax, false)
+      // A manual sell price only fills in cities without a recent sell order.
+      const order = sale(fresh(p?.sellMin, now) ?? manualSell, true)
+      const instant = sale(fresh(p?.buyMax, now), false)
       const result: CityResult = {
         order,
         instant,
@@ -188,5 +223,17 @@ export function calcRow(
     }),
   ) as Record<City, CityResult>
 
-  return { recipe, raw, lower, materialCost, materialCostFocus, usageFee, focusPerStack, silverPerFocus, cities }
+  return {
+    recipe,
+    raw,
+    lower,
+    materialCost,
+    materialCostFocus,
+    usageFee,
+    costPerItem: perItem(materialCost),
+    costPerItemFocus: perItem(materialCostFocus),
+    focusPerStack,
+    silverPerFocus,
+    cities,
+  }
 }
